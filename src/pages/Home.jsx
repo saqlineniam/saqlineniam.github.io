@@ -156,19 +156,19 @@ const Home = () => {
                 <div className="relative pl-4 border-l-2 border-slate-100">
                   <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-slate-300"></div>
                   <p className="text-xs font-bold text-uga-red mb-1">AUGUST 2026</p>
-                  <p className="text-sm text-slate-700">Starting as an MSc student and Graduate Research Assistant (GRA) at the Precision Agriculture Lab, University of Georgia.</p>
+                  <p className="text-sm text-slate-700">Starting as an MSc student and Graduate Research Assistant (GRA) at the Department of Horticulture, University of Georgia.</p>
                 </div>
 
                 <div className="relative pl-4 border-l-2 border-slate-100">
                   <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-slate-300"></div>
-                  <p className="text-xs font-bold text-slate-500 mb-1">MAY 2025</p>
-                  <p className="text-sm text-slate-700">Published first-author paper in <em>LWT</em> on machine learning optimization for strawberry edible coatings.</p>
+                  <p className="text-xs font-bold text-slate-500 mb-1">2026</p>
+                  <p className="text-sm text-slate-700">Published paper on machine learning–assisted sensory characterization in <em>Applied Food Research</em>.</p>
                 </div>
 
                 <div className="relative pl-4 border-l-2 border-slate-100">
                   <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-slate-300"></div>
-                  <p className="text-xs font-bold text-slate-500 mb-1">EARLY 2025</p>
-                  <p className="text-sm text-slate-700">Presented integrating seed traits and plasma parameters framework at the Int. Plant Tissue Culture & Biotech Conference.</p>
+                  <p className="text-xs font-bold text-slate-500 mb-1">2025</p>
+                  <p className="text-sm text-slate-700">Published first-author paper in <em>LWT - Food Science and Technology</em> on ML-optimized edible coatings.</p>
                 </div>
               </div>
             </div>
