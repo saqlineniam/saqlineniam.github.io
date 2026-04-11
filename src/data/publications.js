@@ -9,7 +9,7 @@ export const publications = [
     type: "Journal Article",
     status: "Published",
     doi: "10.2139/SSRN.5398137",
-    link: "https://doi.org/10.2139/SSRN.5398137",
+    link: "https://doi.org/10.1016/j.afres.2026.101896",
     pdf: "",
     featured: true,
     background: "This research focused on analyzing the chemical profile and sensory attributes of concentrated tea extracts. We utilized machine learning models to map analytical data directly to sensory descriptors, reducing the reliance on subjective human panels. \n\n(Edit this to add behind-the-scenes details of the tea processing or data collection).",
