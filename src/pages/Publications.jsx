@@ -146,7 +146,7 @@ const Publications = () => {
           viewport={{ once: true }}
           className="mt-16 p-8 bg-slate-50 border border-slate-200 rounded-xl text-center"
         >
-          <h3 className="font-serif text-lg font-bold text-slate-900 mb-2">Current Lab Focus (UGA Tifton)</h3>
+          <h3 className="font-serif text-lg font-bold text-slate-900 mb-2">Current Independent Research</h3>
           <p className="text-slate-600 text-sm max-w-xl mx-auto">
             Currently preparing manuscripts on real-time UAV-based tomato plant counting and accurate instance re-identification of cauliflower plants using drones.
           </p>

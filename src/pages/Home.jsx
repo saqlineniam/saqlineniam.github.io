@@ -127,10 +127,10 @@ const Home = () => {
                 {/* Transition Summary */}
                 <div className="bg-slate-50 border border-slate-100 rounded-lg p-6">
                   <h4 className="font-serif text-lg font-bold text-slate-800 mb-2">
-                    Ongoing: Precision Agriculture Lab, UGA
+                    Ongoing Technical Research
                   </h4>
                   <p className="text-sm text-slate-600">
-                    My current role involves developing drone-based agricultural mapping, including real-time UAV tomato plant counting, weed mapping using Faster RCNN, and Ground Robot-Based Lettuce Phenotyping.
+                    I am actively developing drone-based agricultural mapping pipelines, including real-time UAV plant counting, instance segmentation using YOLO architectures, and ground robot-based phenotyping systems.
                   </p>
                   <Link to="/projects" className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-uga-red hover:underline">
                     Explore Technical Projects <ArrowRight size={14} />
