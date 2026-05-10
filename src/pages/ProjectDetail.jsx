@@ -59,6 +59,63 @@ const Lightbox = ({ img, onClose }) => {
   );
 };
 
+const MetricBar = ({ value, max = 100, highlight }) => (
+  <div className="flex items-center gap-2">
+    <div className="flex-1 bg-slate-100 rounded-full h-1.5 overflow-hidden">
+      <div
+        className={`h-full rounded-full ${highlight ? 'bg-uga-red' : 'bg-slate-400'}`}
+        style={{ width: `${(value / max) * 100}%` }}
+      />
+    </div>
+    <span className={`text-xs font-mono w-10 text-right ${highlight ? 'font-bold text-slate-900' : 'text-slate-500'}`}>
+      {value}%
+    </span>
+  </div>
+);
+
+const ModelComparison = ({ data }) => (
+  <section className="mb-14">
+    <h2 className="font-serif text-2xl font-bold text-slate-900 mb-2">Model Selection</h2>
+    <p className="text-sm text-slate-500 mb-6">{data.note}</p>
+    <div className="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+      <table className="w-full text-sm border-collapse">
+        <thead>
+          <tr className="bg-slate-50 border-b border-slate-200">
+            <th className="text-left px-4 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wide">Model</th>
+            <th className="text-left px-4 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wide">Mode</th>
+            <th className="px-4 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wide text-right">Precision</th>
+            <th className="px-4 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wide text-right">Recall</th>
+            <th className="px-4 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wide min-w-[140px]">MAP@50</th>
+            <th className="px-4 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wide min-w-[140px]">MAP@50-95</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.models.map((model, i) => {
+            const rows = [['Box', model.box], model.mask ? ['Mask', model.mask] : null].filter(Boolean);
+            return rows.map(([mode, metrics], j) => (
+              <tr
+                key={`${i}-${j}`}
+                className={`border-b border-slate-100 ${model.chosen ? 'bg-red-50/40' : j === 0 && i % 2 === 0 ? 'bg-white' : 'bg-slate-50/30'}`}
+              >
+                {j === 0 && (
+                  <td rowSpan={rows.length} className={`px-4 py-3 font-semibold align-middle ${model.chosen ? 'text-uga-red' : 'text-slate-800'}`}>
+                    {model.name}{model.chosen && <span className="ml-1.5 text-[10px] bg-uga-red text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wide">Selected</span>}
+                  </td>
+                )}
+                <td className="px-4 py-3 text-slate-500 text-xs font-mono">{mode}</td>
+                <td className="px-4 py-3 text-right text-slate-600">{metrics.precision}%</td>
+                <td className="px-4 py-3 text-right text-slate-600">{metrics.recall}%</td>
+                <td className="px-4 py-3"><MetricBar value={metrics.map50} highlight={model.chosen} /></td>
+                <td className="px-4 py-3"><MetricBar value={metrics.map5095} max={85} highlight={model.chosen} /></td>
+              </tr>
+            ));
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+);
+
 const ImplementationDetails = ({ d, onImageClick }) => {
   const wideImages = d.images ? d.images.filter(img => img.wide) : [];
   const gridImages = d.images ? d.images.filter(img => !img.wide) : [];
@@ -84,6 +141,9 @@ const ImplementationDetails = ({ d, onImageClick }) => {
           </div>
         </section>
       )}
+
+      {/* Model Comparison */}
+      {d.modelComparison && <ModelComparison data={d.modelComparison} />}
 
       {/* Iteration History */}
       {d.iterations && (

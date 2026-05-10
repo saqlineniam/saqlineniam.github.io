@@ -11,6 +11,28 @@ export const projects = [
     thumbnail: "/images/cauliflower.jpg",
     implementationDetails: {
       overview: "The drone flies a straight row of cabbage plants forward (Phase 1), then turns and flies back (Phase 2). During Phase 2, every detection must be matched to its corresponding Phase 1 plant to build a persistent, GPS-free field map. The return pass is the same row seen from the opposite direction — plants enter the frame from the top instead of the bottom, the drone travels in reverse, and there is no absolute position reference. Re-ID must be done frame-by-frame using only accumulated visual odometry and per-plant image history.",
+      modelComparison: {
+        note: "YOLOv9c-seg was selected for the final pipeline — it achieved the highest MAP@50 (96.1%) and MAP@50-95 (78.2%) on box detection across all tested architectures.",
+        models: [
+          { name: "YOLOv9c-seg", chosen: true,
+            box:  { precision: 95.0, recall: 94.7, map50: 96.1, map5095: 78.2 },
+            mask: { precision: 94.7, recall: 94.9, map50: 96.1, map5095: 71.9 } },
+          { name: "YOLOv8s-seg",
+            box:  { precision: 96.2, recall: 95.2, map50: 95.3, map5095: 76.3 },
+            mask: { precision: 96.2, recall: 95.2, map50: 95.3, map5095: 70.6 } },
+          { name: "YOLOv11s-seg",
+            box:  { precision: 92.5, recall: 95.3, map50: 95.2, map5095: 76.5 },
+            mask: { precision: 92.8, recall: 95.7, map50: 95.2, map5095: 71.2 } },
+          { name: "RF-DETR",
+            box:  { precision: 94.7, recall: 95.5, map50: 93.4, map5095: 75.5 } },
+          { name: "Mask R-CNN",
+            box:  { precision: 91.0, recall: 98.2, map50: 92.5, map5095: 74.1 },
+            mask: { precision: 91.0, recall: 98.2, map50: 92.6, map5095: 74.9 } },
+          { name: "Mask R-CNN (ResNet-50)",
+            box:  { precision: 91.2, recall: 98.7, map50: 94.6, map5095: 77.6 },
+            mask: { precision: 91.2, recall: 98.7, map50: 94.5, map5095: 76.9 } },
+        ]
+      },
       pipeline: [
         { step: "1", label: "Detection & Tracking", desc: "YOLOv9c-seg (instance segmentation, conf=0.7) produces per-frame masks. BoTSORT maintains persistent raw IDs across frames within each pass." },
         { step: "2", label: "Visual Odometry", desc: "cv2.phaseCorrelate() estimates sub-pixel camera displacement frame-to-frame. The row-axis component is accumulated into a cumulative displacement table. Outlier frames (>25px — caused by periodic crop-row FFT aliasing) are clamped to 0." },
