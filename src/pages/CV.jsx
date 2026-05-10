@@ -52,18 +52,6 @@ const CV = () => {
             <div className="space-y-8 ml-4 md:ml-11 border-l-2 border-slate-100 pl-6 relative">
               
               <div className="relative">
-                <div className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-uga-red bg-white"></div>
-                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-1 mb-2">
-                  <h3 className="text-xl font-bold text-slate-900">University of Georgia (UGA)</h3>
-                  <span className="text-sm font-bold tracking-wider text-slate-400 uppercase">Aug 2026 – Present</span>
-                </div>
-                <p className="text-uga-red font-medium mb-3">MSc in Horticulture</p>
-                <p className="text-slate-600 leading-relaxed">
-                  Focusing on Precision Horticulture, applying Computer Vision, YOLO architectures, and Hyperspectral Imaging for high-throughput phenotyping and precise crop yield analysis via UAVs.
-                </p>
-              </div>
-
-              <div className="relative">
                 <div className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-300 bg-white"></div>
                 <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-1 mb-2">
                   <h3 className="text-xl font-bold text-slate-900">Shahjalal University of Science and Technology (SUST)</h3>
@@ -87,15 +75,6 @@ const CV = () => {
             
             <div className="space-y-8 ml-4 md:ml-11 border-l-2 border-slate-100 pl-6 relative">
               
-              <div className="relative">
-                <div className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-uga-red bg-white"></div>
-                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-1 mb-2">
-                  <h3 className="text-xl font-bold text-slate-900">Precision Agriculture Lab, UGA</h3>
-                  <span className="text-sm font-bold tracking-wider text-slate-400 uppercase">Aug 2026 – Present</span>
-                </div>
-                <p className="text-uga-red font-medium mb-3">Graduate Research Assistant</p>
-              </div>
-
               <div className="relative">
                 <div className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-300 bg-white"></div>
                 <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-1 mb-2">

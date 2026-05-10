@@ -19,7 +19,7 @@ const Home = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-uga-red font-medium tracking-widest text-sm uppercase mb-4">
-                MSc Student & GRA
+                Research Assistant
               </h2>
               <h1 className="font-serif text-5xl md:text-6xl font-bold text-slate-900 leading-tight mb-6">
                 Saklain Niam
@@ -65,19 +65,6 @@ const Home = () => {
                 Education
               </h3>
               <div className="space-y-6">
-                <div className="flex flex-col md:flex-row md:items-start gap-4">
-                  <div className="md:w-1/4 shrink-0 text-slate-500 font-medium text-sm pt-1">
-                    Aug 2026 – Present
-                  </div>
-                  <div className="md:w-3/4">
-                    <h4 className="text-lg font-bold text-slate-900">University of Georgia (UGA)</h4>
-                    <p className="text-uga-red font-medium mb-2">MSc Student, Department of Horticulture</p>
-                    <ul className="list-disc list-outside ml-5 text-slate-600 space-y-1 text-sm leading-relaxed">
-                      <li>Graduate Research Assistant (GRA) at the Precision Horticulture Lab.</li>
-                    </ul>
-                  </div>
-                </div>
-
                 <div className="flex flex-col md:flex-row md:items-start gap-4">
                   <div className="md:w-1/4 shrink-0 text-slate-500 font-medium text-sm pt-1">
                     2019 – 2024
@@ -153,12 +140,6 @@ const Home = () => {
               </h3>
               
               <div className="space-y-6">
-                <div className="relative pl-4 border-l-2 border-slate-100">
-                  <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-slate-300"></div>
-                  <p className="text-xs font-bold text-uga-red mb-1">AUGUST 2026</p>
-                  <p className="text-sm text-slate-700">Starting as an MSc student and Graduate Research Assistant (GRA) at the Department of Horticulture, University of Georgia.</p>
-                </div>
-
                 <div className="relative pl-4 border-l-2 border-slate-100">
                   <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-slate-300"></div>
                   <p className="text-xs font-bold text-slate-500 mb-1">2026</p>
