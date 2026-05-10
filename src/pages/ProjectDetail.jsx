@@ -271,14 +271,31 @@ const ProjectDetail = () => {
               ))}
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-slate-600 leading-relaxed max-w-3xl"
-            >
-              {project.story}
-            </motion.p>
+            <div className={`flex flex-col ${project.thumbnail ? 'md:flex-row md:gap-10 md:items-start' : ''}`}>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="text-xl text-slate-600 leading-relaxed md:flex-1"
+              >
+                {project.story}
+              </motion.p>
+
+              {project.thumbnail && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.25 }}
+                  className="mt-6 md:mt-0 md:w-64 md:shrink-0"
+                >
+                  <img
+                    src={project.thumbnail}
+                    alt={project.title}
+                    className="w-full rounded-xl border border-slate-200 shadow-sm object-cover"
+                  />
+                </motion.div>
+              )}
+            </div>
 
             {project.github && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="mt-8">
