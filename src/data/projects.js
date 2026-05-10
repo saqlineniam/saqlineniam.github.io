@@ -105,17 +105,6 @@ export const projects = [
     thumbnail: "https://img.youtube.com/vi/7ht56wef0Fc/hqdefault.jpg"
   },
   {
-    id: 3,
-    slug: "south-asia-heatwave-causal",
-    title: "South Asia Heatwave Causal Dynamics (2000–2024)",
-    category: "Climate & Geospatial",
-    story: "South Asian heatwaves are intensifying — but which atmospheric and oceanic variables are actually causing them, and where? This study uses ERA5 reanalysis data across 25 years, builds heatwave event networks via Event Synchronization, detects regional communities with Walktrap graph clustering, then runs PCMCI+ causal discovery (Tigramite) with 32 variables across 35 regional communities to map causal pathways for PreMonsoon and Monsoon seasons. The result is one of the first spatially-resolved causal maps of South Asian heat extremes.",
-    tags: ["PCMCI+", "ERA5", "Tigramite", "Event Synchronization", "Walktrap", "NetCDF", "Python"],
-    imageLabel: "[Heatwave frequency map of South Asia / community detection network graph — use a choropleth or graph visualization screenshot]",
-    github: false,
-    featured: true
-  },
-  {
     id: 4,
     slug: "ground-robot-lettuce-phenotyping",
     title: "Ground Robot Lettuce Phenotyping: Segmentation, Counting, Tracking",

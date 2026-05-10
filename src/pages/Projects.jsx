@@ -101,9 +101,6 @@ const ProjectCard = ({ project, index }) => {
             )}
           </div>
           
-          <Link to={`/projects/${project.slug}`} className="inline-flex items-center gap-1 text-sm font-medium text-uga-red opacity-0 group-hover:opacity-100 transition-opacity">
-            View Details <ArrowRight size={14} />
-          </Link>
         </div>
       </div>
     </motion.div>
