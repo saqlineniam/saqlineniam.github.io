@@ -65,11 +65,6 @@ const ImplementationDetails = ({ d, onImageClick }) => {
 
   return (
     <>
-      {/* Overview — no heading, flows directly from the story above */}
-      {d.overview && (
-        <p className="text-slate-600 leading-relaxed text-lg mb-14">{d.overview}</p>
-      )}
-
       {/* Pipeline */}
       {d.pipeline && (
         <section className="mb-14">
