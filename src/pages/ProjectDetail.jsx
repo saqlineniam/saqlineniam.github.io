@@ -184,29 +184,6 @@ const ImplementationDetails = ({ d, onImageClick }) => {
         </section>
       )}
 
-      {/* Results */}
-      {d.results && (
-        <section className="mb-14">
-          <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">Results</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {Object.entries(d.results).map(([key, val]) => {
-              const labels = {
-                reidRate: 'RE-ID Rate', reidCount: 'Plants Matched',
-                medianMatchDist: 'Median Match Dist.', maxMatchDist: 'Max Match Dist.',
-                newP2Plants: 'New P2 Plants', unmatchedP1: 'Unmatched P1',
-                processingSpeed: 'Processing Speed',
-              };
-              return (
-                <div key={key} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm text-center">
-                  <p className="text-2xl font-bold text-slate-900 mb-1">{val}</p>
-                  <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">{labels[key] || key}</p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
       {/* Key Insights */}
       {d.insights && (
         <section className="mb-14">
@@ -222,12 +199,13 @@ const ImplementationDetails = ({ d, onImageClick }) => {
         </section>
       )}
 
-      {/* Results & Plots */}
-      {d.images && d.images.length > 0 && (
+      {/* Merged Results — progression chart, then stat boxes, then field maps */}
+      {(d.results || (d.images && d.images.length > 0)) && (
         <section className="mb-14">
-          <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">Results & Plots</h2>
-          <div className="space-y-6">
-            {/* Wide images — full width */}
+          <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">Results</h2>
+          <div className="space-y-8">
+
+            {/* Wide images first (progression chart) */}
             {wideImages.map((img, i) => (
               <figure key={`wide-${i}`}>
                 <div
@@ -245,7 +223,27 @@ const ImplementationDetails = ({ d, onImageClick }) => {
               </figure>
             ))}
 
-            {/* Non-wide images — side by side for comparison */}
+            {/* Stat boxes */}
+            {d.results && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {Object.entries(d.results).map(([key, val]) => {
+                  const labels = {
+                    reidRate: 'RE-ID Rate', reidCount: 'Plants Matched',
+                    medianMatchDist: 'Median Match Dist.', maxMatchDist: 'Max Match Dist.',
+                    newP2Plants: 'New P2 Plants', unmatchedP1: 'Unmatched P1',
+                    processingSpeed: 'Processing Speed',
+                  };
+                  return (
+                    <div key={key} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm text-center">
+                      <p className="text-2xl font-bold text-slate-900 mb-1">{val}</p>
+                      <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">{labels[key] || key}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Field maps side by side */}
             {gridImages.length > 0 && (
               <div className={`grid gap-6 ${gridImages.length > 1 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
                 {gridImages.map((img, i) => (
