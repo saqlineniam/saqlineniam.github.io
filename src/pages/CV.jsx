@@ -28,17 +28,6 @@ const CV = () => {
             </motion.p>
           </div>
           
-          <motion.a 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            href="/pdfs/CV_Saklain_Niam.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded font-medium hover:bg-slate-800 transition-colors shrink-0"
-          >
-            <Download size={16} /> Download PDF
-          </motion.a>
         </header>
 
         <div className="space-y-16">
