@@ -114,13 +114,43 @@ export const projects = [
     }
   },
   {
+    id: 10,
+    slug: "seed-germination-mlflow",
+    title: "Seed Germination Rate Prediction with ML + MLflow Tracking",
+    category: "Food Science & Biotech",
+    story: "Seed germination is sensitive to both seed traits and pre-treatment parameters like plasma exposure. This project builds a machine learning framework that integrates seed morphological features and plasma treatment parameters to predict germination uplift — complete with MLflow experiment tracking for reproducibility and a live Streamlit prediction interface.",
+    tags: ["MLflow", "Scikit-learn", "Docker", "MLOps", "Streamlit", "Python", "IPTCB 2025"],
+    imageLabel: "MLflow experiment tracking & live prediction",
+    github: "https://github.com/saqlineniam/Cold-Plasma-Seed-Treatment-Germination-Prediction-App",
+    streamlitUrl: "https://w7hv3tu6obfi7afvhpt33t.streamlit.app/",
+    dockerHubUrl: "https://hub.docker.com/r/spacehatmanager/cold-plasma-ml",
+    paperUrl: "https://arxiv.org/abs/2510.23657v1",
+    featured: true,
+    thumbnail: "/images/seed_cold_plasma.png",
+    implementationDetails: {
+      overview: "A multi-model MLOps pipeline that benchmarks Extra Trees, Gradient Boosting, and XGBoost along with Hybrid Stacking architectures. The system is fully containerized using Docker, with an integrated MLflow server for experiment tracking and a Streamlit frontend for real-time inference.",
+      results: {
+        bestModel: "Extra Trees / Hybrid",
+        bestR2: "0.919",
+        metrics: "RMSE: 3.21 | MAE: 2.62",
+        infrastructure: "Docker + MLflow"
+      },
+      pipeline: [
+        { step: "1", label: "Data Engineering", desc: "Preprocessing seed traits and plasma parameters (Voltage, Power, Time) using Yeo-Johnson transforms and polynomial features." },
+        { step: "2", label: "Experiment Tracking", desc: "Automated logging of hyperparameters and metrics for 7+ model variants in MLflow." },
+        { step: "3", label: "Model Stacking", desc: "Building hybrid meta-models that combine the strengths of different tree-based architectures." },
+        { step: "4", label: "Deployment", desc: "Containerized Streamlit app that pulls the best-performing model for user-driven simulation." }
+      ]
+    }
+  },
+  {
     id: 2,
     slug: "apple-tracking-orchard",
     title: "Real-Time Apple Tracking in Orchards with BotSORT + LoFTR",
     category: "Computer Vision & Robotics",
     story: "Tracking fruit in a moving, occluded orchard environment is harder than it looks — apples look identical, cluster together, and disappear behind branches. This project combined LoFTR's detector-free local feature matching with BotSORT's multi-object tracking to maintain persistent IDs on individual apples across frames in real time, intended for yield estimation pipelines.",
     tags: ["LoFTR", "BotSORT", "Real-time tracking", "Python", "OpenCV"],
-    imageLabel: "[Side-by-side: raw orchard video frame | tracked frame with bounding boxes and IDs]",
+    imageLabel: "Real-time multi-object tracking in orchard environments",
     github: true,
     featured: true,
     youtubeId: "7ht56wef0Fc",
@@ -131,11 +161,29 @@ export const projects = [
     slug: "ground-robot-lettuce-phenotyping",
     title: "Ground Robot Lettuce Phenotyping: Segmentation, Counting, Tracking",
     category: "Computer Vision & Robotics",
-    story: "Phenotyping — measuring plant traits at scale — is slow and labor-intensive when done by hand. This project uses a ground robot equipped with a camera to autonomously segment individual lettuce heads, count them, and track their positions across the field using trajectory tracking algorithms. Designed for small-scale precision agriculture where aerial drones can't get close enough.",
-    tags: ["Segmentation", "Counting", "Trajectory Tracking", "Python", "OpenCV"],
-    imageLabel: "[Robot's-eye-view footage with lettuce segmentation masks overlaid and count labels]",
+    story: "Developing an autonomous phenotyping system for lettuce crop monitoring. This project integrates high-precision instance segmentation with global map reconstruction to track individual plants across field sequences, achieving nearly perfect detection accuracy and reliable unique plant counting in complex agricultural environments.",
+    tags: ["YOLOv8-seg", "BoTSORT", "LoFTR", "Trajectory Tracking", "Global Mapping", "Python", "OpenCV"],
+    imageLabel: "Unique Plant Count: 23 | mAP@50: 99.3%",
     github: true,
-    featured: true
+    featured: true,
+    thumbnail: "/images/lettuce_pheno.png",
+    implementationDetails: {
+      overview: "The system uses a ground robot to capture sequential imagery of lettuce rows. The core challenge is maintainting persistent IDs for each plant across frames despite robotic motion and overlapping foliage. The solution combines state-of-the-art segmentation with a 'Map Healing' logic that averages old and new positions to correct for motion drift.",
+      results: {
+        mAP50: "99.3%",
+        mAP5095: "97.0%",
+        uniqueCount: "23 Plants",
+        latency: "424.9 ms",
+        fps: "2.4",
+        motionEst: "218.6 ms (LoFTR)"
+      },
+      pipeline: [
+        { step: "1", label: "Segmentation", desc: "YOLOv8-seg model trained on custom LettuceMOTS dataset to isolate individual plants with pixel-level precision." },
+        { step: "2", label: "Motion Estimation", desc: "LoFTR (Detector-Free Local Feature Matching) calculates frame-to-frame homography to track robotic displacement." },
+        { step: "3", label: "ID Association", desc: "BoTSORT maintains short-term temporal IDs, which are then mapped to a persistent Global Database." },
+        { step: "4", label: "Global Mapping", desc: "A 'Global Re-ID' logic checks the existing plant database for spatial matches, using 'Map Healing' to refine coordinates and eliminate duplicates." }
+      ]
+    }
   },
   {
     id: 5,
@@ -144,9 +192,10 @@ export const projects = [
     category: "Computer Vision & Robotics",
     story: "Manual scouting of tomato fields for plant stands and weed pressure is time-consuming and error-prone. This project develops a real-time UAV pipeline that simultaneously counts tomato plants and maps weed distributions across small-scale agricultural fields — giving farmers an actionable field map after a single drone flight.",
     tags: ["UAV", "Object Detection", "Instance Segmentation", "Python"],
-    imageLabel: "[Drone top-down field image with tomato plants and weeds highlighted in different colors]",
+    imageLabel: "Tomato Count: 148 | Real-time mapping",
     github: false,
-    featured: false
+    featured: false,
+    thumbnail: "/images/tomato_mapping.png"
   },
   {
     id: 6,
@@ -155,7 +204,7 @@ export const projects = [
     category: "Computer Vision & Robotics",
     story: "Weeds compete with crops for resources, and catching them early is critical. This project benchmarks Faster RCNN and Mask RCNN architectures with RPN and Feature Pyramid Networks for detecting and segmenting weeds in small-scale drone imagery — testing both detection accuracy and segmentation mask quality under real field conditions.",
     tags: ["Mask RCNN", "Faster RCNN", "FPN", "RPN", "Aerial Imagery", "PyTorch"],
-    imageLabel: "[Drone field image split — raw vs. segmentation output with colored weed masks]",
+    imageLabel: "Weed segmentation mask analysis",
     github: true,
     featured: false
   },
@@ -166,18 +215,18 @@ export const projects = [
     category: "Computer Vision & Robotics",
     story: "Monitoring worker activity in large tea gardens is practically infeasible manually. This real-time system uses YOLOv8 to detect and classify worker activities — plucking, walking, idle, etc. — from camera feeds deployed across the plantation, enabling supervisors to track productivity patterns.",
     tags: ["YOLOv8", "Activity Recognition", "Real-time", "Python"],
-    imageLabel: "[Tea garden scene with worker bounding boxes and activity class labels overlaid]",
+    imageLabel: "Activity classification and detection",
     github: false,
     featured: false
   },
   {
     id: 8,
     slug: "ml-strawberry-edible-coatings",
-    title: "ML-Optimized Edible Coatings for Strawberry Shelf Life",
+    title: "Bio-based Edible Coating for Strawberry Shelf Life",
     category: "Food Science & Biotech",
     story: "Strawberries rot fast. This published study optimized alginate, guar gum, and pectin-based edible coating formulations using machine learning models, predicting the coating combination that maximizes shelf life across multiple quality indicators — reducing the trial-and-error of traditional food formulation.",
     tags: ["Machine Learning", "Food Science", "Optimization", "Python", "LWT 2025"],
-    imageLabel: "[Close-up of fresh vs. coated strawberries / ML prediction surface plot]",
+    imageLabel: "Coating performance comparison",
     github: false,
     featured: false,
     thumbnail: "/images/strawberries/main.jpg"
@@ -189,18 +238,7 @@ export const projects = [
     category: "Food Science & Biotech",
     story: "Sensory evaluation of food products is subjective and hard to scale. This study builds ML-assisted models to characterize and predict sensory attributes of tea concentrates, connecting chemical composition data with trained panel responses.",
     tags: ["Sensory Science", "ML", "Tea", "Applied Food Research 2026"],
-    imageLabel: "[Tea concentrate samples in lab / radar chart of sensory attributes]",
-    github: false,
-    featured: false
-  },
-  {
-    id: 10,
-    slug: "seed-germination-mlflow",
-    title: "Seed Germination Rate Prediction with ML + MLflow Tracking",
-    category: "Food Science & Biotech",
-    story: "Seed germination is sensitive to both seed traits and pre-treatment parameters like plasma exposure. This project builds a machine learning framework that integrates seed morphological features and plasma treatment parameters to predict germination uplift — complete with MLflow experiment tracking for reproducibility.",
-    tags: ["MLflow", "Scikit-learn", "Feature Engineering", "Python", "IPTCB 2025"],
-    imageLabel: "[MLflow experiment dashboard screenshot / germination rate vs. prediction scatter plot]",
+    imageLabel: "Sensory attribute characterization",
     github: false,
     featured: false
   },
@@ -208,33 +246,34 @@ export const projects = [
     id: 11,
     slug: "tea-leaf-disease-cnn",
     title: "Tea Leaf Disease Classification",
-    category: "Food Science & Biotech",
+    category: "Computer Vision & Robotics",
     story: "Disease identification in tea leaves is typically done by experienced agronomists — which is slow and scarce. This project builds a CNN-based classifier trained on tea leaf imagery to detect and classify common disease types, aiming to democratize early disease detection for small tea growers.",
     tags: ["CNN", "Transfer Learning", "Image Classification", "Python"],
-    imageLabel: "[Tea leaf images — healthy vs. diseased, with predicted class labels]",
+    imageLabel: "CNN Heatmap of diseased tea leaf regions",
     github: true,
-    featured: false
+    featured: false,
+    thumbnail: "/images/tea_disease.jpg"
   },
   {
-    id: 12,
-    slug: "cheminformatics-solubility",
-    title: "Cheminformatics: Drug Solubility and Bioactivity Prediction",
-    category: "Food Science & Biotech",
-    story: "Two companion projects in computational drug discovery — one predicts aqueous solubility of molecules from chemical structure (SMILES) using regression models built on RDKit descriptors, the other predicts bioactivity of drug candidates against specific protein targets using ChEMBL data. Both are reproducible notebooks exploring structure-activity relationships.",
-    tags: ["RDKit", "ChEMBL", "SMILES", "Cheminformatics", "Python"],
-    imageLabel: "[Molecule structure visualization / predicted vs. actual solubility plot]",
-    github: true,
-    featured: false
-  },
-  {
-    id: 13,
-    slug: "bangladesh-flood-climate",
-    title: "August 2024 Bangladesh Flood: Climatic Analysis",
-    category: "Climate & Geospatial",
-    story: "The August 2024 floods in Bangladesh were catastrophic. This project performs a data-driven climatic retrospective — analyzing rainfall patterns, upstream river discharge, and atmospheric conditions that converged to produce the event, using gridded satellite and reanalysis datasets.",
-    tags: ["ERA5", "Geospatial Analysis", "Python", "Flood Analysis"],
-    imageLabel: "[Flood extent map of Bangladesh / rainfall anomaly choropleth]",
+    id: 14,
+    slug: "bread-classification-cv",
+    title: "Computer Vision for Bread Classification",
+    category: "Computer Vision & Robotics",
+    story: "Developing a computer vision system to classify bread made from all-purpose and multigrain flour, correlating visual crumb structure with physicochemical characterization.",
+    tags: ["Computer Vision", "Food Science", "Crumb Analysis"],
     github: false,
-    featured: false
+    featured: false,
+    thumbnail: "/images/bread_cv.jpg"
+  },
+  {
+    id: 15,
+    slug: "plant-layout-optimization",
+    title: "Plant Layout Optimization for Pineapple Juice Manufacturing",
+    category: "Food Science & Biotech",
+    story: "Optimizing the production floor layout for PinePlus probiotic pineapple juice manufacturing to minimize material handling costs and maximize efficiency.",
+    tags: ["Optimization", "Industrial Engineering", "Food Processing"],
+    github: false,
+    featured: false,
+    thumbnail: "/images/layout_opt.jpg"
   }
 ];

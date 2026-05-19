@@ -1,196 +1,192 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ExternalLink, GraduationCap } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight, ExternalLink, Cpu, Database, Zap, Binary, Microscope, Drone, Bot } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const categories = [
+    {
+      title: "Biological Systems",
+      icon: <Microscope size={24} className="text-ag-green" />,
+      items: ["Food Engineering", "Seed Physiology", "Post-harvest Quality", "Tea Technology"]
+    },
+    {
+      title: "Machine Intelligence",
+      icon: <Binary size={24} className="text-tech-blue" />,
+      items: ["Computer Vision", "Deep Learning", "MLOps & Docker", "Reinforcement Learning"]
+    },
+    {
+      title: "Autonomous Robotics",
+      icon: <Bot size={24} className="text-slate-900" />,
+      items: ["UAV Mapping", "Visual Odometry", "ROS2 Systems", "SLAM Frameworks"]
+    }
+  ];
+
   return (
     <div className="relative">
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none -z-10 h-[70vh]"></div>
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none -z-10 h-screen"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-ag-green/5 blur-[120px] rounded-full -z-10"></div>
+      <div className="absolute bottom-1/4 left-0 w-1/4 h-1/4 bg-tech-blue/5 blur-[100px] rounded-full -z-10"></div>
 
       <div className="max-w-5xl mx-auto px-6 md:px-12 pt-16 pb-24">
 
-        {/* Hero Section */}
-        <section className="mb-24 grid md:grid-cols-12 gap-12 items-center">
+        {/* Hero Section: The Architect Narrative */}
+        <section className="mb-32 grid md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-8">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <h1 className="font-serif text-5xl md:text-6xl font-bold text-slate-900 leading-tight mb-6">
+              <h1 className="text-6xl md:text-7xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
                 Saklain Niam
               </h1>
-              <p className="text-xl text-slate-600 font-light leading-relaxed max-w-2xl">
-                Working at the intersection of Computer Vision, Robotics, and Precision Agriculture — building drone-based crop mapping systems and applying machine learning to food engineering challenges.
+              
+              <p className="text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-2xl mb-8">
+                Architecting the <span className="text-ag-deep dark:text-ag-green font-medium italic underline decoration-ag-green/30">Intelligence</span> between biological systems and autonomous machines.
               </p>
 
-              <div className="mt-8 flex gap-4">
-                <Link to="/cv" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded hover:bg-slate-800 transition-colors text-sm font-medium">
-                  View Full CV
+              <div className="flex flex-wrap gap-4">
+                <Link to="/projects" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 dark:bg-ag-green text-white dark:text-slate-900 rounded-lg hover:bg-slate-800 dark:hover:bg-ag-green/90 transition-all shadow-lg shadow-slate-200/50 dark:shadow-ag-green/10 text-sm font-semibold">
+                  Explore Research <ArrowRight size={18} />
                 </Link>
-                <a href="mailto:saklain35@student.sust.edu" className="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 text-slate-700 rounded hover:border-slate-300 hover:bg-slate-50 transition-colors text-sm font-medium">
-                  Contact Me
-                </a>
-              </div>
-
-              <div className="mt-5 flex items-center gap-5">
-                <a href="https://www.linkedin.com/in/saklain-niam-4a5a50b0/" target="_blank" rel="noreferrer" title="LinkedIn" className="flex items-center gap-1.5 text-[#0077B5] hover:opacity-80 transition-opacity text-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  <span className="font-medium">LinkedIn</span>
-                </a>
-                <a href="https://scholar.google.com/citations?user=2zChObIAAAAJ&hl=en&oi=ao" target="_blank" rel="noreferrer" title="Google Scholar" className="flex items-center gap-1.5 text-[#4285F4] hover:opacity-80 transition-opacity text-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5h3.6v1.4c0 .5.4.9 1 .9h.8v8.8c-.5.3-.8.8-.8 1.4 0 .9.7 1.6 1.6 1.6h11.6c.9 0 1.6-.7 1.6-1.6 0-.6-.3-1.1-.8-1.4v-8.8h.8c.5 0 1-.4 1-.9V9.5H24L12 0z"/></svg>
-                  <span className="font-medium">Scholar</span>
-                </a>
-                <a href="https://www.instagram.com/saqlineniam/" target="_blank" rel="noreferrer" title="Instagram" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity text-sm" style={{color: '#E1306C'}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-                  <span className="font-medium">Instagram</span>
-                </a>
+                <Link to="/cv" className="inline-flex items-center gap-2 px-8 py-4 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-all text-sm font-semibold">
+                  Technical Stack
+                </Link>
               </div>
             </motion.div>
           </div>
 
           <div className="md:col-span-4 flex justify-end">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full max-w-[280px] aspect-[3/4] bg-slate-100 rounded-lg border border-slate-200 relative overflow-hidden flex items-center justify-center shadow-sm"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-slate-100 to-slate-50"></div>
-              <img src="/images/profile.jpg" alt="Saklain Niam" className="relative z-10 w-full h-full object-cover object-top" />
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-uga-red"></div>
+              <div className="absolute -inset-4 bg-gradient-to-tr from-ag-green/20 to-tech-blue/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative w-full max-w-[300px] aspect-[4/5] bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
+                <img src="/images/profile.png" alt="Saklain Niam" className="w-full h-full object-cover rounded-xl" />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center rotate-12 group-hover:rotate-0 transition-transform">
+                <div className="text-center">
+                  <div className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-1">Status</div>
+                  <div className="text-sm font-black text-ag-green">GRADUATE</div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
 
-        <div className="space-y-16">
-
-          {/* Education */}
-          <section>
-            <h3 className="font-serif text-2xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">
-              Education
-            </h3>
-            <div className="flex flex-col md:flex-row md:items-start gap-4">
-              <div className="md:w-1/5 shrink-0 text-slate-500 font-medium text-sm pt-1">
-                2019 – 2024
-              </div>
-              <div className="md:w-4/5">
-                <h4 className="text-lg font-bold text-slate-900">Shahjalal University of Science and Technology (SUST)</h4>
-                <p className="text-uga-red font-medium mb-2">BSc, Food Engineering and Tea Technology</p>
-                <ul className="list-disc list-outside ml-5 text-slate-600 space-y-1 text-sm leading-relaxed">
-                  <li>CGPA: 3.46 / 4.00</li>
-                  <li><strong>Thesis:</strong> Impact of alginate, guar gum, and pectin-based edible coatings on strawberry shelf life.</li>
+        {/* The Ag-Intelligence Stack */}
+        <section className="mb-32">
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Research Framework</h2>
+            <div className="h-px bg-slate-200 dark:bg-slate-800 flex-grow"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            {/* Visual connector lines for desktop */}
+            <div className="hidden md:block absolute top-1/2 left-1/3 right-1/3 h-[2px] bg-gradient-to-r from-ag-green/20 via-tech-blue/20 to-slate-200 dark:to-slate-800 -z-10"></div>
+            
+            {categories.map((cat, idx) => (
+              <div key={cat.title} className="relative">
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-center">
+                    {cat.icon}
+                  </div>
+                  <h3 className="font-bold text-slate-900 dark:text-white uppercase tracking-tighter">{cat.title}</h3>
+                </div>
+                <ul className="space-y-3">
+                  {cat.items.map(item => (
+                    <li key={item} className="flex items-center gap-3 text-slate-600 dark:text-slate-400 group hover:text-slate-900 dark:hover:text-white transition-colors">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 group-hover:bg-ag-green transition-colors"></div>
+                      <span className="text-sm font-medium tracking-tight">{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
-            </div>
-          </section>
+            ))}
+          </div>
+        </section>
 
-          {/* Skills */}
-          <section>
-            <h3 className="font-serif text-2xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">
-              Skills
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white border border-slate-200 rounded-xl p-5">
-                <h4 className="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wider">Computer Vision & ML</h4>
-                <ul className="list-disc list-outside ml-4 space-y-1.5 text-sm text-slate-600">
-                  <li>Python, OpenCV</li>
-                  <li>YOLO, Vision Transformers</li>
-                  <li>Transfer Learning, Neural Networks</li>
-                  <li>Reinforcement Learning (DQN)</li>
-                  <li>Instance Segmentation, Object Tracking</li>
-                </ul>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-xl p-5">
-                <h4 className="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wider">Robotics & Precision Ag</h4>
-                <ul className="list-disc list-outside ml-4 space-y-1.5 text-sm text-slate-600">
-                  <li>UAV / Drone Systems</li>
-                  <li>Ground Robot Phenotyping</li>
-                  <li>Geospatial Analysis (pyKrige, PCMCI)</li>
-                  <li>Remote Sensing</li>
-                  <li>Hyperspectral Imaging</li>
-                </ul>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-xl p-5">
-                <h4 className="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wider">Lab & Analysis</h4>
-                <ul className="list-disc list-outside ml-4 space-y-1.5 text-sm text-slate-600">
-                  <li>GC, HPLC, E-Nose, Spectrophotoscopy</li>
-                  <li>Non-thermal Processing</li>
-                  <li>PCA, LDA, Variance Tests</li>
-                  <li>Statistica, Minitab, OriginPro</li>
-                  <li>LaTeX, MLflow</li>
-                </ul>
-              </div>
-            </div>
-            <div className="mt-4 border-l-4 border-uga-red bg-slate-50 rounded-r-xl px-6 py-5 flex flex-col md:flex-row md:items-center gap-4">
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-uga-red opacity-60"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-uga-red"></span>
-                </span>
-                <span className="text-xs font-bold uppercase tracking-widest text-uga-red">Currently Learning</span>
-              </div>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Actively learning <span className="font-semibold text-slate-800">ROS2</span> and <span className="font-semibold text-slate-800">SLAM</span>. Goal: close the gap between vision-based crop mapping and robots that can act on that information autonomously.
-              </p>
-            </div>
-          </section>
+        {/* Featured Case Study */}
+        <section className="mb-32">
+           <div className="flex items-center justify-between gap-4 mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Featured Research</h2>
+            <Link to="/publications" className="text-sm font-bold text-ag-green hover:underline">Full Portfolio</Link>
+          </div>
 
-          {/* Featured Research */}
-          <section>
-            <h3 className="font-serif text-2xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2 flex items-center justify-between">
-              Featured Research
-              <Link to="/publications" className="text-sm font-sans font-medium text-uga-red hover:underline flex items-center gap-1">
-                View All <ArrowRight size={14} />
-              </Link>
-            </h3>
-
-            <div className="space-y-6">
-              <Link to="/projects/cauliflower-reid-drone" className="group block border border-slate-200 rounded-lg p-6 hover:shadow-md transition-shadow bg-white relative overflow-hidden">
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-uga-red opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <p className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">Computer Vision & Robotics • Ongoing</p>
-                <h4 className="font-serif text-lg font-bold text-slate-900 mb-2 group-hover:text-uga-red transition-colors">
-                  Cabbage Plant Re-Identification Across GPS-Free Drone Loop Passes
+          <div className="grid md:grid-cols-2 gap-8">
+            <Link to="/projects/cauliflower-reid-drone" className="group cyber-card rounded-2xl overflow-hidden flex flex-col">
+              <div className="aspect-video bg-slate-100 dark:bg-slate-800 overflow-hidden relative">
+                <img src="/images/cauliflower.jpg" alt="Drone Mapping" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute top-4 left-4 px-3 py-1 bg-ag-green text-white text-[10px] font-black uppercase tracking-widest rounded-full">Primary Study</div>
+              </div>
+              <div className="p-8">
+                <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-ag-green transition-colors leading-snug">
+                  Cabbage Re-ID Across GPS-Free Drone Passes
                 </h4>
-                <p className="text-sm text-slate-600 mb-4 line-clamp-2">
-                  A SeqSLAM-inspired pipeline using YOLOv9c-seg, BoTSORT, and phase correlation visual odometry to re-identify 372 plants across dual drone passes with no GPS — achieving 83% RE-ID rate.
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+                  Developed a SeqSLAM-inspired pipeline for plant-level tracking across asynchronous UAV fly-overs.
                 </p>
-                <span className="inline-flex items-center gap-1 text-xs font-medium text-uga-red">
-                  View project details <ArrowRight size={12} />
-                </span>
-              </Link>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-[10px] font-bold text-slate-500 dark:text-slate-400 rounded uppercase">Visual Odometry</span>
+                  <span className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-[10px] font-bold text-slate-500 dark:text-slate-400 rounded uppercase">YOLOv9-seg</span>
+                </div>
+              </div>
+            </Link>
 
-              <div className="group border border-slate-200 rounded-lg p-6 hover:shadow-md transition-shadow bg-white relative overflow-hidden">
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-uga-red opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <p className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">LWT - Food Science and Technology • 2025</p>
-                <h4 className="font-serif text-lg font-bold text-slate-900 mb-2 group-hover:text-uga-red transition-colors">
-                  Machine learning-based optimization of alginate, guar gum, and pectin-based edible coatings for extended strawberry shelf life.
-                </h4>
-                <p className="text-sm text-slate-600 mb-4 line-clamp-2">
-                  First-author publication demonstrating the application of ML models to optimize bio-coatings, extending post-harvest quality preservation.
-                </p>
-                <a href="https://doi.org/10.1016/J.LWT.2025.118548" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded transition-colors">
-                  <ExternalLink size={12} /> DOI Link
+            <div className="flex flex-col gap-6">
+              <div 
+                onClick={() => navigate('/publications/strawberry-edible-coatings')}
+                className="cyber-card p-6 rounded-2xl border-l-4 border-l-ag-green cursor-pointer group"
+              >
+                <div className="text-xs font-black text-ag-green uppercase tracking-widest mb-2">LWT Food Science • 2025</div>
+                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-ag-green transition-colors">Bio-based Edible Coating</h4>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2 italic">"Optimizing bio-coatings for strawberry shelf life using predictive regression models."</p>
+                <a 
+                  href="https://doi.org/10.1016/J.LWT.2025.118548" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1 text-xs font-bold text-slate-900 dark:text-white hover:underline"
+                >
+                  <ExternalLink size={14} /> View Publication
                 </a>
               </div>
 
-              <div className="bg-slate-50 border border-slate-100 rounded-lg p-6">
-                <h4 className="font-serif text-lg font-bold text-slate-800 mb-2">
-                  Ongoing Technical Research
-                </h4>
-                <p className="text-sm text-slate-600">
-                  I am actively developing drone-based agricultural mapping pipelines, including real-time UAV plant counting, instance segmentation using YOLO architectures, and ground robot-based phenotyping systems.
-                </p>
-                <Link to="/projects" className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-uga-red hover:underline">
-                  Explore Technical Projects <ArrowRight size={14} />
+              <div 
+                onClick={() => navigate('/publications/germination-uplift-plasma')}
+                className="cyber-card p-6 rounded-2xl border-l-4 border-l-tech-blue cursor-pointer group"
+              >
+                <div className="text-xs font-black text-tech-blue uppercase tracking-widest mb-2">Seed Technology • 2025</div>
+                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-tech-blue transition-colors">Plasma Parameter Prediction</h4>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2 italic">"Extra Trees models achieving R² = 0.92 for germination uplift forecasting."</p>
+                <a 
+                  href="https://arxiv.org/abs/2510.23657v1" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1 text-xs font-bold text-slate-900 dark:text-white hover:underline"
+                >
+                  <ExternalLink size={14} /> arXiv Preprint
+                </a>
+              </div>
+
+              <div className="bg-slate-900 dark:bg-ag-deep p-8 rounded-2xl text-white relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000"></div>
+                <h4 className="text-lg font-bold mb-2">Technical Projects</h4>
+                <p className="text-slate-400 dark:text-slate-300 text-sm mb-6">Explore the full archive of computer vision and robotics implementations.</p>
+                <Link to="/projects" className="inline-flex items-center gap-2 text-ag-green dark:text-ag-green font-bold text-sm">
+                  View All Projects <ArrowRight size={16} />
                 </Link>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-        </div>
       </div>
     </div>
   );
