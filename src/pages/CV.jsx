@@ -31,10 +31,7 @@ const CV = () => {
           </div>
           
           <div className="flex flex-col gap-3">
-             <button className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900 dark:bg-ag-green text-white dark:text-slate-900 rounded-xl text-sm font-bold hover:bg-slate-800 dark:hover:bg-ag-green/90 transition-all shadow-xl shadow-slate-200 dark:shadow-ag-green/10">
-               <Download size={18} /> Export PDF
-             </button>
-             <a href="mailto:saklain35@student.sust.edu" className="inline-flex items-center gap-3 px-6 py-3 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
+             <a href="mailto:saklain35@student.sust.edu" className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900 dark:bg-ag-green text-white dark:text-slate-900 rounded-xl text-sm font-bold hover:bg-slate-800 dark:hover:bg-ag-green/90 transition-all shadow-xl shadow-slate-200 dark:shadow-ag-green/10">
                <Mail size={18} /> Contact
              </a>
           </div>
@@ -58,24 +55,7 @@ const CV = () => {
                 <div className="relative">
                   <div className="absolute -left-[45px] top-1 h-2.5 w-2.5 rounded-full bg-ag-green shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
                   <div className="mb-2">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">University of Georgia</h3>
-                    <div className="text-sm font-black text-ag-green uppercase tracking-widest mt-1">Starting Aug 2026</div>
-                  </div>
-                  <p className="text-slate-600 dark:text-slate-300 font-medium mb-4">MS in Horticulture</p>
-                  <div className="cyber-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                    <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
-                      <li className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 mt-1.5"></div>
-                        <span><strong>Research Focus:</strong> Advanced Robotics in Agriculture</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute -left-[45px] top-1 h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></div>
-                  <div className="mb-2">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white opacity-50 dark:opacity-40">Shahjalal University of Science and Technology</h3>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">Shahjalal University of Science and Technology</h3>
                     <div className="text-sm font-black text-ag-green uppercase tracking-widest mt-1">2019 – 2024</div>
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 font-medium mb-4">BSc (Engineering) in Food Engineering and Tea Technology</p>
@@ -106,21 +86,9 @@ const CV = () => {
               
               <div className="space-y-12 ml-5 border-l border-slate-100 dark:border-slate-800 pl-10 relative">
                 <div className="relative">
-                  <div className="absolute -left-[45px] top-1 h-2.5 w-2.5 rounded-full bg-ag-green shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                  <div className="absolute -left-[45px] top-1 h-2.5 w-2.5 rounded-full bg-ag-green shadow-[0_0_10_rgba(16,185,129,0.5)]"></div>
                   <div className="mb-2">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">Graduate Research Assistant</h3>
-                    <div className="text-sm font-black text-ag-green uppercase tracking-widest mt-1">Starting Aug 2026</div>
-                    </div>
-                    <p className="text-slate-600 dark:text-slate-300 font-medium mb-1">Precision Horticulture Lab, Tifton</p>
-                    <p className="text-slate-500 dark:text-slate-400 font-bold text-sm mb-4">University of Georgia</p>                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Incoming researcher focusing on autonomous robotics and computer vision systems for high-throughput phenotyping and precision horticultural management.
-                  </p>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute -left-[45px] top-1 h-2.5 w-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></div>
-                  <div className="mb-2">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white opacity-50 dark:opacity-40">Research Assistant</h3>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">Research Assistant</h3>
                     <div className="text-sm font-black text-tech-blue uppercase tracking-widest mt-1">May 2024 – Present</div>
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 font-medium mb-4">Dept. of Food Engineering and Tea Technology, SUST</p>
