@@ -1,271 +1,159 @@
-import { motion } from 'framer-motion';
-import { Download, ExternalLink, Cpu, FlaskConical, Globe, BookOpen, GraduationCap, Award, Mail, Music, Bot, Layers, Terminal, Database, Microscope } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Briefcase, GraduationCap, BookOpen, Users, Wrench, Languages, UserCheck, FileText } from 'lucide-react';
+import { profile, education, experience, trainings, activities, skills, testScores, references } from '../data/profile';
+import { publications } from '../data/publications';
+import CopyEmail from '../components/CopyEmail';
+import { LinkedInIcon } from '../components/BrandIcons';
+import useTitle from '../lib/useTitle';
+
+const Heading = ({ icon: Icon, children }) => (
+  <h2 className="flex items-center gap-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white mb-6">
+    <span className="w-8 h-8 shrink-0 rounded-lg grid place-items-center bg-emerald-500/10 ring-1 ring-emerald-500/20">
+      <Icon size={16} className="text-emerald-700 dark:text-emerald-400" />
+    </span>
+    {children}
+  </h2>
+);
+
+const Entry = ({ title, org, period, children }) => (
+  <div className="relative pl-6 pb-8 last:pb-0 border-l border-zinc-200 dark:border-zinc-800">
+    <span className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-ag-green" />
+    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+      <h3 className="font-semibold text-zinc-900 dark:text-white">{title}</h3>
+      <span className="text-sm text-zinc-500 dark:text-zinc-400 shrink-0 tabular-nums">{period}</span>
+    </div>
+    {org && <p className="text-sm font-medium text-zinc-600 dark:text-zinc-300 mb-2">{org}</p>}
+    {children}
+  </div>
+);
 
 const CV = () => {
+  useTitle('CV');
+  const published = publications.filter((p) => p.status === 'Published');
+
   return (
-    <div className="relative min-h-screen">
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none -z-10 h-[60vh]"></div>
-
-      <div className="max-w-5xl mx-auto px-6 md:px-12 pt-16 pb-24">
-        
-        <header className="mb-20 flex flex-col md:flex-row md:items-start justify-between gap-10">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2 text-ag-green font-black text-[10px] uppercase tracking-[0.3em] mb-4"
-            >
-              <div className="w-8 h-px bg-ag-green"></div>
-              Technical Profile
-            </motion.div>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6"
-            >
-              Curriculum Vitae
-            </motion.h1>
-            <p className="text-xl text-slate-500 dark:text-slate-400 font-light leading-relaxed">
-              Architecting the intersection of <span className="text-ag-deep dark:text-ag-green font-medium italic underline decoration-ag-green/30">Computer Vision</span>, <span className="text-tech-blue dark:text-tech-blue font-medium italic underline decoration-tech-blue/30">Robotics</span>, and <span className="text-slate-900 dark:text-white font-medium italic underline decoration-slate-400/30">Food Engineering</span>.
-            </p>
-          </div>
-          
-          <div className="flex flex-col gap-3">
-             <a href="mailto:saklain35@student.sust.edu" className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900 dark:bg-ag-green text-white dark:text-slate-900 rounded-xl text-sm font-bold hover:bg-slate-800 dark:hover:bg-ag-green/90 transition-all shadow-xl shadow-slate-200 dark:shadow-ag-green/10">
-               <Mail size={18} /> Contact
-             </a>
-          </div>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
-          
-          {/* Main Content (Left) */}
-          <div className="md:col-span-8 space-y-20">
-            
-            {/* Education */}
-            <section>
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center">
-                   <GraduationCap size={20} className="text-slate-900 dark:text-white" />
-                </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">Education</h2>
-              </div>
-              
-              <div className="space-y-12 ml-5 border-l border-slate-100 dark:border-slate-800 pl-10 relative">
-                <div className="relative">
-                  <div className="absolute -left-[45px] top-1 h-2.5 w-2.5 rounded-full bg-ag-green shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-                  <div className="mb-2">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">Shahjalal University of Science and Technology</h3>
-                    <div className="text-sm font-black text-ag-green uppercase tracking-widest mt-1">2019 – 2024</div>
-                  </div>
-                  <p className="text-slate-600 dark:text-slate-300 font-medium mb-4">BSc (Engineering) in Food Engineering and Tea Technology</p>
-                  <div className="cyber-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                    <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
-                      <li className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 mt-1.5"></div>
-                        <span><strong>CGPA:</strong> 3.46 / 4.00</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 mt-1.5"></div>
-                        <span><strong>Major Thesis:</strong> Impact of alginate, guar gum, and pectin-based edible coatings on strawberry shelf life.</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Research Experience */}
-            <section>
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center">
-                   <Award size={20} className="text-slate-900 dark:text-white" />
-                </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">Experience</h2>
-              </div>
-              
-              <div className="space-y-12 ml-5 border-l border-slate-100 dark:border-slate-800 pl-10 relative">
-                <div className="relative">
-                  <div className="absolute -left-[45px] top-1 h-2.5 w-2.5 rounded-full bg-ag-green shadow-[0_0_10_rgba(16,185,129,0.5)]"></div>
-                  <div className="mb-2">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">Research Assistant</h3>
-                    <div className="text-sm font-black text-tech-blue uppercase tracking-widest mt-1">May 2024 – Present</div>
-                  </div>
-                  <p className="text-slate-600 dark:text-slate-300 font-medium mb-4">Dept. of Food Engineering and Tea Technology, SUST</p>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Conducting research under Dr. Iftekhar Ahmad, integrating machine learning with non-thermal processing and post-harvest preservation to extend perishable food shelf life.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* Trainings - Flat Layout */}
-            <section>
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center">
-                   <BookOpen size={20} className="text-slate-900 dark:text-white" />
-                </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">Technical Trainings</h2>
-              </div>
-              
-              <div className="space-y-8 ml-5">
-                {[
-                  { title: "Quality Control and Unit Operation", inst: "TICI, Bangladesh", date: "Jan - Feb 2023", desc: "Intensive training on industrial food processing and quality assurance protocols." },
-                  { title: "Agro-Processing & Preservation", inst: "BRRI, Bangladesh", date: "Nov 2022", desc: "Workshop focusing on sustainable post-harvest technologies and value addition." },
-                  { title: "International Tea Trade (Online)", inst: "Zhangzhou College, China", date: "Nov 2022", desc: "Global tea economics, processing technology, and trade certification." },
-                ].map((item) => (
-                  <div key={item.title} className="border-b border-slate-100 dark:border-slate-800 pb-8 last:border-0">
-                    <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2 mb-2">
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white">{item.title}</h4>
-                      <span className="text-[10px] font-black text-ag-green uppercase tracking-widest">{item.date}</span>
-                    </div>
-                    <p className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-tight mb-2">{item.inst}</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Extracurricular - Flat Layout */}
-            <section>
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center">
-                   <Music size={20} className="text-slate-900 dark:text-white" />
-                </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">Extracurricular</h2>
-              </div>
-              
-              <div className="ml-5">
-                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2 mb-4">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">Shikorh Cultural Club</h3>
-                  <span className="text-[10px] font-black text-ag-green uppercase tracking-widest">2023 - 2024</span>
-                </div>
-                <p className="text-lg font-medium text-slate-700 dark:text-slate-300 mb-3 italic">Publication Secretary</p>
-                <p className="text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl">
-                  Directed the editorial workflow for departmental publications and cultural newsletters. Facilitated cross-disciplinary collaboration between engineering cohorts and creative arts initiatives, managing both digital and print production cycles.
-                </p>
-              </div>
-            </section>
-
-          </div>
-
-          {/* Sidebar (Right) */}
-          <div className="md:col-span-4 space-y-12">
-            
-            {/* Computing Stack */}
-            <div className="bg-slate-900 dark:bg-slate-950 rounded-3xl p-8 text-white relative overflow-hidden">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-ag-green/10 blur-[60px] rounded-full"></div>
-               <h3 className="text-lg font-bold mb-8 flex items-center gap-2">
-                 <Terminal size={20} className="text-ag-green" /> Skills
-               </h3>
-               
-               <div className="space-y-8">
-                 <div>
-                   <h4 className="text-[10px] font-black text-ag-green uppercase tracking-[0.2em] mb-4">Programming & ML</h4>
-                   <div className="flex flex-wrap gap-2">
-                     {["Python", "LaTeX", "OpenCV", "PyTorch", "Vision Transformers", "Autoencoders", "Reinforcement Learning"].map(s => (
-                       <span key={s} className="text-[9px] bg-white/5 border border-white/10 px-2 py-1 rounded text-white">{s}</span>
-                     ))}
-                   </div>
-                 </div>
-
-                 <div>
-                   <h4 className="text-[10px] font-black text-tech-blue uppercase tracking-[0.2em] mb-4">Robotics & DevOps</h4>
-                   <div className="flex flex-wrap gap-2">
-                     {["ROS 2", "SLAM", "Docker", "MLOps"].map(s => (
-                       <span key={s} className="text-[9px] bg-white/5 border border-white/10 px-2 py-1 rounded font-bold text-tech-blue/80">{s}</span>
-                     ))}
-                   </div>
-                 </div>
-               </div>
-            </div>
-
-            {/* Lab & Stats */}
-            <div className="cyber-card p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                <FlaskConical size={20} className="text-ag-green" /> Lab & Analysis
-              </h3>
-              <div className="space-y-6">
-                <div>
-                  <h4 className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-3">Food Science</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {["Bioactive Extraction", "Physicochemical Analysis", "Chemical Formulation", "Non-thermal Processing"].map(s => (
-                      <span key={s} className="text-[9px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-1 rounded font-medium">{s}</span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-3">Analytical Instruments</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {["GC", "HPLC", "E-Nose", "Spectrophotoscopy"].map(s => (
-                      <span key={s} className="text-[9px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-1 rounded font-medium">{s}</span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-3">Stats & Bioinformatics</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {["PCA / LDA", "Variance Tests", "PCMCI", "RDKit", "chEMBL"].map(s => (
-                      <span key={s} className="text-[9px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-1 rounded font-medium">{s}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Test Scores */}
-            <div className="cyber-card p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <h3 className="font-bold text-slate-900 dark:text-white mb-6">Test Scores</h3>
-              <div className="space-y-8">
-                <div>
-                  <div className="flex justify-between items-end mb-3">
-                    <span className="text-sm font-bold text-slate-600 dark:text-slate-400">IELTS Overall</span>
-                    <span className="text-xl font-black text-slate-900 dark:text-white">7.0</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[{l:'Reading', v:8.0}, {l:'Listening', v:7.5}, {l:'Speaking', v:7.0}, {l:'Writing', v:6.0}].map(s => (
-                      <div key={s.l} className="bg-slate-50 dark:bg-slate-800 p-2 rounded text-center">
-                        <div className="text-[8px] font-black text-slate-400 dark:text-slate-500 uppercase">{s.l}</div>
-                        <div className="text-xs font-bold text-slate-900 dark:text-white">{s.v}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between items-end mb-3">
-                    <span className="text-sm font-bold text-slate-600 dark:text-slate-400">GRE Overall</span>
-                    <span className="text-xl font-black text-slate-900 dark:text-white">306</span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[{l:'Quant', v:162}, {l:'Verbal', v:144}, {l:'AWA', v:3.0}].map(s => (
-                      <div key={s.l} className="bg-slate-50 dark:bg-slate-800 p-2 rounded text-center">
-                        <div className="text-[8px] font-black text-slate-400 dark:text-slate-500 uppercase">{s.l}</div>
-                        <div className="text-xs font-bold text-slate-900 dark:text-white">{s.v}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* References */}
-            <div className="p-8 space-y-6">
-              <h3 className="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">References</h3>
-              <div>
-                <p className="text-xs font-bold text-slate-900 dark:text-white">Dr. Iftekhar Ahmad</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 uppercase mb-1">Professor, SUST</p>
-                <a href="mailto:iftekhar-ttc@sust.edu" className="text-[10px] text-ag-green font-bold">iftekhar-ttc@sust.edu</a>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-slate-900 dark:text-white">Dr. G M Rabiul Islam</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 uppercase mb-1">Professor, SUST</p>
-                <a href="mailto:rabi-ttc@sust.edu" className="text-[10px] text-ag-green font-bold">rabi-ttc@sust.edu</a>
-              </div>
-            </div>
-
-          </div>
+    <div className="max-w-6xl mx-auto px-4 sm:px-5 md:px-8 pt-10 md:pt-14">
+      <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div>
+          <p className="eyebrow mb-3">Curriculum vitae</p>
+          <h1 className="text-5xl md:text-6xl font-semibold tracking-tighter text-zinc-900 dark:text-white mb-4">{profile.name}</h1>
+          <p className="text-lg text-zinc-600 dark:text-zinc-400">{profile.role}, {profile.affiliation}</p>
         </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <CopyEmail email={profile.email} />
+          <a href={profile.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="btn btn-ghost btn-icon">
+            <LinkedInIcon size={18} />
+          </a>
+        </div>
+      </header>
+
+      <div className="grid lg:grid-cols-12 gap-12">
+        <div className="lg:col-span-8 space-y-14">
+          <section>
+            <Heading icon={Briefcase}>Experience</Heading>
+            {experience.map((e) => (
+              <Entry key={e.title + e.org} title={e.title} org={e.org} period={e.period}>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{e.desc}</p>
+              </Entry>
+            ))}
+          </section>
+
+          <section>
+            <Heading icon={GraduationCap}>Education</Heading>
+            {education.map((e) => (
+              <Entry key={e.school} title={e.degree} org={e.school} period={e.period}>
+                <ul className="text-sm text-zinc-600 dark:text-zinc-400 space-y-1 list-disc pl-4">
+                  {e.details.map((d) => <li key={d}>{d}</li>)}
+                </ul>
+              </Entry>
+            ))}
+          </section>
+
+          <section>
+            <Heading icon={FileText}>Publications</Heading>
+            <ol className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400 list-decimal pl-5">
+              {published.map((p) => (
+                <li key={p.id} className="leading-relaxed pl-1">
+                  <Link to={`/publications/${p.slug}`} className="text-zinc-900 dark:text-white font-medium hover:text-ag-deep dark:hover:text-ag-green">
+                    {p.title.replace(/\.$/, '')}
+                  </Link>
+                  . <em>{p.journal}</em>, {p.year}.
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section>
+            <Heading icon={BookOpen}>Training</Heading>
+            {trainings.map((t) => (
+              <Entry key={t.title} title={t.title} org={t.org} period={t.period}>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{t.desc}</p>
+              </Entry>
+            ))}
+          </section>
+
+          <section>
+            <Heading icon={Users}>Leadership & activities</Heading>
+            {activities.map((a) => (
+              <Entry key={a.title} title={a.title} org={a.org} period={a.period}>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{a.desc}</p>
+              </Entry>
+            ))}
+          </section>
+        </div>
+
+        <aside className="lg:col-span-4 space-y-8">
+          <section className="card p-6">
+            <Heading icon={Wrench}>Skills</Heading>
+            <div className="space-y-5">
+              {skills.map((s) => (
+                <div key={s.group}>
+                  <h3 className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-2">{s.group}</h3>
+                  <ul className="flex flex-wrap gap-1.5">
+                    {s.items.map((i) => (
+                      <li key={i} className="text-xs px-2 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">{i}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="card p-6">
+            <Heading icon={Languages}>Test scores</Heading>
+            <div className="space-y-6">
+              {testScores.map((t) => (
+                <div key={t.name}>
+                  <div className="flex items-baseline justify-between mb-2">
+                    <span className="font-semibold text-zinc-900 dark:text-white">{t.name}</span>
+                    <span className="text-2xl font-bold text-zinc-900 dark:text-white tabular-nums">{t.total}</span>
+                  </div>
+                  <dl className={`grid gap-2 ${t.parts.length === 4 ? 'grid-cols-4' : 'grid-cols-3'}`}>
+                    {t.parts.map(([label, v]) => (
+                      <div key={label} className="rounded-lg bg-zinc-50 dark:bg-zinc-800/60 p-2 text-center">
+                        <dt className="text-[11px] text-zinc-500 dark:text-zinc-400">{label}</dt>
+                        <dd className="text-sm font-semibold text-zinc-900 dark:text-white tabular-nums">{v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="card p-6">
+            <Heading icon={UserCheck}>References</Heading>
+            <ul className="space-y-4">
+              {references.map((r) => (
+                <li key={r.email}>
+                  <p className="font-semibold text-zinc-900 dark:text-white">{r.name}</p>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">{r.title}</p>
+                  <a href={`mailto:${r.email}`} className="text-sm text-ag-deep dark:text-ag-green hover:underline">{r.email}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </aside>
       </div>
     </div>
   );

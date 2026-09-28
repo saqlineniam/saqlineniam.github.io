@@ -1,36 +1,89 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { lazy, Suspense, useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import CommandPalette from './components/CommandPalette';
 import Home from './pages/Home';
-// Import placeholder pages (we will implement these next)
-import Publications from './pages/Publications';
-import PublicationDetail from './pages/PublicationDetail';
-import Projects from './pages/Projects';
-import ProjectDetail from './pages/ProjectDetail';
-import CV from './pages/CV';
+
+const Projects = lazy(() => import('./pages/Projects'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+const Publications = lazy(() => import('./pages/Publications'));
+const PublicationDetail = lazy(() => import('./pages/PublicationDetail'));
+const CV = lazy(() => import('./pages/CV'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+// Re-mounts page content on navigation so each page fades in.
+const PageTransition = ({ children }) => {
+  const { pathname } = useLocation();
+  return <div key={pathname} className="page-enter">{children}</div>;
+};
 
 function App() {
-  return (
-    <Router>
-      <ScrollToTop />
-      <div className="min-h-screen font-sans bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 selection:bg-ag-green/20 selection:text-ag-deep">
-        <Navigation />
-        
-        <main className="pt-20"> {/* Add padding top to account for fixed navbar */}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/publications" element={<Publications />} />
-            <Route path="/publications/:slug" element={<PublicationDetail />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:slug" element={<ProjectDetail />} />
-            <Route path="/cv" element={<CV />} />
-          </Routes>
-        </main>
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const openPalette = useCallback(() => setPaletteOpen(true), []);
 
-        <Footer />
-      </div>
-    </Router>
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setPaletteOpen((o) => !o);
+      } else if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
+        e.preventDefault();
+        setPaletteOpen(true);
+      }
+    };
+    // Feeds the cursor position to .spotlight cards for their hover glow.
+    const onPointer = (e) => {
+      const el = e.target.closest?.('.spotlight');
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    };
+    window.addEventListener('keydown', onKey);
+    window.addEventListener('pointermove', onPointer, { passive: true });
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('pointermove', onPointer);
+    };
+  }, []);
+
+  return (
+    <MotionConfig reducedMotion="user">
+      <Router>
+        <ScrollToTop />
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-2 focus:rounded-lg focus:bg-white focus:text-zinc-900">
+          Skip to content
+        </a>
+        <div className="relative isolate min-h-screen flex flex-col font-sans text-zinc-900 dark:text-zinc-100">
+          <div className="aurora" aria-hidden="true" />
+          <div className="grid-lines" aria-hidden="true" />
+
+          <Navigation onSearch={openPalette} />
+          <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
+
+          <main id="main" className="pt-20 flex-1">
+            <Suspense fallback={<div className="min-h-[60vh]" />}>
+              <PageTransition>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/projects/:slug" element={<ProjectDetail />} />
+                  <Route path="/publications" element={<Publications />} />
+                  <Route path="/publications/:slug" element={<PublicationDetail />} />
+                  <Route path="/cv" element={<CV />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </PageTransition>
+            </Suspense>
+          </main>
+
+          <Footer />
+        </div>
+      </Router>
+    </MotionConfig>
   );
 }
 

@@ -3,12 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Saklain Niam - Academic Portfolio</title>
-    <!-- Inter for Sans-serif body, Playfair Display for Serif headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <title>Saklain Niam — Agricultural Robotics, Computer Vision &amp; ML</title>
+    <meta name="description" content="Saklain Niam — MS student and Graduate Research Assistant in the Precision Horticulture Lab at the University of Georgia. Agricultural robotics, reinforcement learning, computer vision and machine learning for food systems." />
+    <meta name="author" content="Saklain Niam" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://saqlineniam.github.io/" />
+    <meta property="og:title" content="Saklain Niam — Agricultural Robotics, Computer Vision &amp; ML" />
+    <meta property="og:description" content="Research on agricultural robotics, reinforcement learning, computer vision and machine learning for food systems — projects, case studies and publications." />
+    <meta property="og:image" content="https://saqlineniam.github.io/images/og-card.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+    <script>
+      // Apply the saved/system theme before first paint to avoid a light-mode flash.
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="./src/main.jsx"></script>
+    <noscript>This site needs JavaScript. Contact: saklain35@student.sust.edu</noscript>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

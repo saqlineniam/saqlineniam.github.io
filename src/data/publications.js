@@ -2,13 +2,14 @@ export const publications = [
   {
     id: 2,
     slug: "tea-concentrates-sensory",
+    projectSlug: "tea-concentrate-sensory-ml",
     title: "Comprehensive Analysis of Tea Concentrates with Machine Learning–Assisted Sensory Characterization.",
     authors: "Dina, P. R., Niam, S., Ahmad, I., Zzaman, W., Salim, M., Ahmed, Md. M., Rahman, T., & Shifat, A. S.",
     journal: "Applied Food Research",
     year: "2026",
     type: "Journal Article",
     status: "Published",
-    doi: "10.2139/SSRN.5398137",
+    doi: "10.1016/j.afres.2026.101896",
     link: "https://doi.org/10.1016/j.afres.2026.101896",
     pdf: "",
     featured: true,
@@ -21,6 +22,7 @@ export const publications = [
   {
     id: 1,
     slug: "strawberry-edible-coatings",
+    projectSlug: "ml-strawberry-edible-coatings",
     title: "Machine learning-based optimization of alginate, guar gum, and pectin-based edible coatings for extended strawberry shelf life.",
     authors: "Niam, S., Ahmad, I., Rayhan, M. A., Mahmood, S., Jon, P. H., & Ahmed, M. M.",
     journal: "LWT - Food Science and Technology",
@@ -33,10 +35,10 @@ export const publications = [
     featured: true,
     background: "During this study, we explored the impact of different bio-coatings on extending the shelf life of highly perishable strawberries. The work involved extensive wet lab experimentation combined with predictive machine learning models to identify the optimal coating formulations.",
     images: [
-      { id: 1, src: "/images/strawberries/lab1.jpg", caption: "Lab Setup & Sample Preparation" },
-      { id: 2, src: "/images/strawberries/lab2.jpg", caption: "Coating Formulation Process" },
-      { id: 3, src: "/images/strawberries/lab3.jpg", caption: "Sensory & Quality Evaluation" },
-      { id: 4, src: "/images/strawberries/lab4.jpg", caption: "Data Collection & Analysis" }
+      { id: 1, src: "/images/strawberries/lab1.webp", caption: "Lab Setup & Sample Preparation" },
+      { id: 2, src: "/images/strawberries/lab2.webp", caption: "Coating Formulation Process" },
+      { id: 3, src: "/images/strawberries/lab3.webp", caption: "Sensory & Quality Evaluation" },
+      { id: 4, src: "/images/strawberries/lab4.webp", caption: "Data Collection & Analysis" }
     ]
   },
   {
@@ -96,6 +98,7 @@ export const publications = [
   {
     id: 5,
     slug: "bread-multigrain-classification",
+    projectSlug: "bread-classification-cv",
     title: "Application of Computer Vision for Classification of Bread Made from All-Purpose and Multigrain Flour with Physicochemical Characterization",
     authors: "Niam, S., et al.",
     journal: "Food Chemistry",

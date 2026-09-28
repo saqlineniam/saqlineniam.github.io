@@ -1,184 +1,120 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Camera, Globe, FlaskConical, Bot, ArrowRight, Cpu, Drone } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Search, X } from 'lucide-react';
+import ProjectCard from '../components/ProjectCard';
 import { projects } from '../data/projects';
+import useTitle from '../lib/useTitle';
 
-const getTagColor = (tag) => {
-  const t = tag.toLowerCase();
-  if (["yolov9", "yolov8", "loftr", "botsort", "mask rcnn", "faster rcnn", "fpn", "rpn", "cnn", "object detection", "instance segmentation", "segmentation", "counting", "trajectory tracking", "activity recognition", "image classification", "aerial imagery", "uav", "real-time tracking"].includes(t)) {
-    return "bg-tech-blue/10 text-tech-blue border-tech-blue/20 dark:bg-tech-blue/20 dark:text-tech-blue dark:border-tech-blue/30"; // CV/Vision: blue
-  }
-  if (["era5", "pcmci+", "tigramite", "event synchronization", "walktrap", "netcdf", "geospatial analysis", "flood analysis", "homography"].includes(t)) {
-    return "bg-ag-green/10 text-ag-green border-ag-green/20 dark:bg-ag-green/20 dark:text-ag-green dark:border-ag-green/30"; // Climate/Geo: green
-  }
-  if (["scikit-learn", "mlflow", "feature engineering", "machine learning", "ml", "optimization", "pytorch"].includes(t)) {
-    return "bg-slate-900 text-white border-slate-900 dark:bg-ag-green dark:text-slate-900 dark:border-ag-green"; // ML/Stats: dark/green
-  }
-  if (["food science", "sensory science", "tea", "rdkit", "chembl", "smiles", "cheminformatics", "lwt 2025", "applied food research 2026", "iptcb 2025"].includes(t)) {
-    return "bg-ag-deep/10 text-ag-deep border-ag-deep/20 dark:bg-ag-deep/20 dark:text-ag-deep dark:border-ag-deep/30"; // Food Science: deep green
-  }
-  return "bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700"; // General gray
+const ALL = 'All';
+
+const matches = (p, q) => {
+  if (!q) return true;
+  const hay = [p.title, p.summary, p.story, p.category, ...p.tags].join(' ').toLowerCase();
+  return q.toLowerCase().split(/\s+/).every((t) => hay.includes(t));
 };
 
-const getCategoryIcon = (category) => {
-  switch (category) {
-    case "Computer Vision & Robotics": return <Drone size={48} className="text-tech-blue/20 dark:text-tech-blue/40" />;
-    case "Climate & Geospatial": return <Globe size={48} className="text-ag-green/20 dark:text-ag-green/40" />;
-    case "Food Science & Biotech": return <FlaskConical size={48} className="text-ag-deep/20 dark:text-ag-deep/40" />;
-    default: return <Camera size={48} className="text-slate-200 dark:text-slate-700" />;
-  }
-};
-
-const ProjectCard = ({ project, index }) => {
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`group cyber-card rounded-2xl overflow-hidden flex flex-col relative ${
-        project.featured ? 'md:col-span-2 md:flex-row' : ''
-      }`}
-    >
-      {/* Featured Accent Line */}
-      {project.featured && (
-        <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-ag-green z-10"></div>
-      )}
-
-      {/* Image Area */}
-      <Link to={`/projects/${project.slug}`} className={`relative bg-slate-50 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0 cursor-pointer ${
-        project.featured ? 'w-full md:w-2/5 aspect-video md:aspect-auto border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-700' : 'w-full aspect-video border-b border-slate-200 dark:border-slate-700'
-      }`}>
-        <div className="absolute inset-0 bg-grid-pattern opacity-30 dark:opacity-20"></div>
-        {project.thumbnail ? (
-          <img src={project.thumbnail} alt={project.title} className="relative z-10 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-        ) : (
-          <div className="relative z-10 flex flex-col items-center justify-center p-6 text-center">
-            {getCategoryIcon(project.category)}
-            <p className="mt-3 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 group-hover:text-ag-green transition-colors">
-              {project.imageLabel || "Research Data"}
-            </p>
-          </div>
-        )}
-      </Link>
-
-      {/* Content Area */}
-      <div className="p-8 flex flex-col flex-1">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <span className="text-[10px] font-black tracking-widest text-slate-400 dark:text-slate-500 uppercase">
-            {project.category}
-          </span>
-        </div>
-        
-        <Link to={`/projects/${project.slug}`} className={`font-bold text-slate-900 dark:text-white mb-4 block hover:text-ag-green transition-colors ${
-          project.featured ? 'text-3xl' : 'text-xl'
-        }`}>
-          {project.title}
-        </Link>
-        
-        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8 flex-1">
-          {project.story}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {project.tags.map(tag => (
-            <span key={tag} className={`text-[9px] font-black uppercase tracking-wider px-2 py-1 rounded border ${getTagColor(tag)}`}>
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Actions */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-slate-100 dark:border-slate-800 mt-auto">
-          <Link to={`/projects/${project.slug}`} className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white group-hover:text-ag-green transition-colors">
-            Analysis Report <ArrowRight size={14} />
-          </Link>
-          
-          {project.github && (
-            <a href="https://github.com/saqlineniam" target="_blank" rel="noreferrer" className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-              <Code size={18} />
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+const pill = (active) =>
+  `shrink-0 h-10 px-4 rounded-full text-sm font-medium border transition-colors ${
+    active
+      ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 border-transparent'
+      : 'bg-white/70 dark:bg-white/[.03] border-zinc-200 dark:border-white/10 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-white/25'
+  }`;
 
 const Projects = () => {
-  const [activeTab, setActiveTab] = useState("All");
-  
-  const categories = ["All", "Computer Vision & Robotics", "Climate & Geospatial", "Food Science & Biotech"];
+  useTitle('Projects');
+  const [params, setParams] = useSearchParams();
+  const category = params.get('category') || ALL;
+  const tag = params.get('tag') || '';
+  const q = params.get('q') || '';
 
-  const filteredProjects = projects.filter(p => 
-    activeTab === "All" ? true : p.category === activeTab
+  const update = (key, value) => {
+    const next = new URLSearchParams(params);
+    if (value && value !== ALL) next.set(key, value); else next.delete(key);
+    setParams(next, { replace: true });
+  };
+
+  const categories = useMemo(() => {
+    const counts = {};
+    projects.forEach((p) => { counts[p.category] = (counts[p.category] || 0) + 1; });
+    return [[ALL, projects.length], ...Object.entries(counts)];
+  }, []);
+
+  const filtered = projects.filter(
+    (p) => (category === ALL || p.category === category) && (!tag || p.tags.includes(tag)) && matches(p, q)
   );
 
+  const hasFilters = category !== ALL || tag || q;
+
   return (
-    <div className="relative min-h-screen">
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 dark:opacity-20 pointer-events-none -z-10 h-[60vh]"></div>
+    <div className="max-w-6xl mx-auto px-4 sm:px-5 md:px-8 pt-10 md:pt-14">
+      <header className="mb-10 max-w-3xl">
+        <p className="eyebrow mb-4">Portfolio</p>
+        <h1 className="text-5xl md:text-6xl font-semibold tracking-tighter text-zinc-900 dark:text-white mb-5">
+          Projects
+          <sup className="ml-2 font-mono text-base md:text-lg font-normal tracking-normal text-zinc-400 dark:text-zinc-500">{projects.length}</sup>
+        </h1>
+        <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          From UAV visual odometry and plant tracking to predictive models for food science. Case studies include the full pipeline, what <span className="accent">failed</span>, and the numbers.
+        </p>
+      </header>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12 pt-16 pb-24">
-        
-        <header className="mb-20 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2 text-ag-green font-black text-[10px] uppercase tracking-[0.3em] mb-4"
-          >
-            <div className="w-8 h-px bg-ag-green"></div>
-            Research Portfolio
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-8 leading-[1.1]"
-          >
-            Technical Implementations
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light leading-relaxed max-w-2xl"
-          >
-            Documenting the engineering process from <span className="text-slate-900 dark:text-white font-medium">UAV visual odometry</span> to <span className="text-slate-900 dark:text-white font-medium">biochemical predictive modeling</span>.
-          </motion.p>
-        </header>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-wrap items-center gap-2 mb-16"
-        >
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 border ${
-                activeTab === cat 
-                  ? 'bg-slate-900 dark:bg-ag-green text-white dark:text-slate-900 border-slate-900 dark:border-ag-green shadow-xl shadow-slate-200 dark:shadow-ag-green/10' 
-                  : 'bg-white dark:bg-slate-900 text-slate-400 dark:text-slate-500 border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              {cat}
+      <div className="sticky top-[4.75rem] z-20 -mx-4 px-4 sm:-mx-5 sm:px-5 md:mx-0 md:px-0 py-3 mb-8 bg-[#fafafa]/85 dark:bg-zinc-950/85 backdrop-blur-md">
+        <div className="flex flex-col md:flex-row gap-3 md:items-center">
+          <label className="relative flex-1 md:max-w-xs">
+            <span className="sr-only">Search projects</span>
+            <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400" />
+            <input
+              type="search"
+              value={q}
+              onChange={(e) => update('q', e.target.value)}
+              placeholder="Search e.g. YOLO, drone, tea"
+              className="w-full h-10 pl-10 pr-4 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/60 text-sm outline-none focus-visible:outline-none focus:border-emerald-500"
+            />
+          </label>
+          <div className="flex gap-2 overflow-x-auto pb-1 md:pb-0" role="tablist" aria-label="Category">
+            {categories.map(([cat, n]) => (
+              <button key={cat} role="tab" aria-selected={category === cat} onClick={() => update('category', cat)} className={pill(category === cat)}>
+                {cat} <span className="opacity-50 ml-0.5 font-mono text-xs">{n}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        {hasFilters && (
+          <div className="flex flex-wrap items-center gap-2 mt-3 text-sm">
+            <span className="text-zinc-500">{filtered.length} result{filtered.length !== 1 && 's'}</span>
+            {tag && (
+              <button onClick={() => update('tag', '')} className="chip hover:border-emerald-500/50">
+                tag: {tag} <X size={13} />
+              </button>
+            )}
+            <button onClick={() => setParams({}, { replace: true })} className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white underline underline-offset-2">
+              Clear all
             </button>
-          ))}
-        </motion.div>
+          </div>
+        )}
+      </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <AnimatePresence mode='popLayout'>
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+      {filtered.length === 0 ? (
+        <p className="py-20 text-center text-zinc-500">No projects match. Try a different search.</p>
+      ) : (
+        <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((p) => (
+              <motion.div
+                key={p.id}
+                layout
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ProjectCard project={p} />
+              </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
-
-      </div>
+      )}
     </div>
   );
 };
