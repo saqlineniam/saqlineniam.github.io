@@ -10,7 +10,7 @@ export const doiUrl = (pub) => {
   return `https://doi.org/${pub.doi}`;
 };
 
-// Keep the final initial's period ("Shifat, A. S.") — only titles get their trailing period stripped.
+// Keep the final initial's period ("Shifat, A. S."). Only titles get their trailing period stripped.
 const authorList = (authors) => {
   const a = (authors || '').trim();
   return /\.$/.test(a) ? a : `${a}.`;

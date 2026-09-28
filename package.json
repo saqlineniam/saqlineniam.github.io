@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "private": true,
   "type": "module",
-  "description": "Portfolio of Saklain Niam — https://saqlineniam.github.io",
+  "description": "Portfolio of Saklain Niam (https://saqlineniam.github.io)",
   "author": "Saklain Niam",
   "scripts": {
     "dev": "vite",

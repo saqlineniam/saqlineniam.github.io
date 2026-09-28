@@ -29,7 +29,7 @@ const Entry = ({ title, org, period, children }) => (
 
 const CV = () => {
   useTitle('CV');
-  const published = publications.filter((p) => p.status === 'Published');
+  const published = publications.filter((p) => p.status === 'Published').sort((a, b) => b.year - a.year);
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-5 md:px-8 pt-10 md:pt-14">
@@ -43,6 +43,9 @@ const CV = () => {
           <CopyEmail email={profile.email} />
           <a href={profile.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="btn btn-ghost btn-icon">
             <LinkedInIcon size={18} />
+          </a>
+          <a href={profile.links.scholar} target="_blank" rel="noreferrer" aria-label="Google Scholar" className="btn btn-ghost btn-icon">
+            <GraduationCap size={18} />
           </a>
         </div>
       </header>

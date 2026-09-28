@@ -1,6 +1,6 @@
 # saqlineniam.github.io
 
-Portfolio of Saklain Niam — https://saqlineniam.github.io
+Portfolio of Saklain Niam: https://saqlineniam.github.io
 
 React 19 + Vite + Tailwind CSS 4, deployed to GitHub Pages by GitHub Actions on every push to `main`.
 

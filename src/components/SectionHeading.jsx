@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Accent from './Accent';
 
-// Numbered section header: "01 — Focus" / "Research *areas*".
+// Numbered section header: "01 / Focus" over "Research *areas*".
 const SectionHeading = ({ index, eyebrow, title, action, to, id }) => (
   <div id={id} className="flex items-end justify-between gap-4 mb-8 scroll-mt-28">
     <div>
       {(index || eyebrow) && (
         <p className="eyebrow mb-3">
-          {index && <span className="text-zinc-400 dark:text-zinc-500">{index} — </span>}
+          {index && <span className="text-zinc-400 dark:text-zinc-500">{index} / </span>}
           {eyebrow}
         </p>
       )}

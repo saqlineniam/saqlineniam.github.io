@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
+import { profile } from '../data/profile';
 import PublicationItem from '../components/PublicationItem';
 import { publications } from '../data/publications';
 import useTitle from '../lib/useTitle';
@@ -29,6 +31,9 @@ const Publications = () => {
         <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
           Peer-reviewed papers and conference work at the intersection of food science and machine learning. Use <strong className="font-semibold text-zinc-800 dark:text-zinc-200">Cite</strong> to copy APA or BibTeX.
         </p>
+        <a href={profile.links.scholar} target="_blank" rel="noreferrer" className="group mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 dark:text-emerald-400 hover:underline">
+          Google Scholar profile <ArrowUpRight size={15} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+        </a>
       </header>
 
       <div className="flex flex-wrap gap-2 mb-12" role="tablist" aria-label="Publication type">

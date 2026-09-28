@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { GraduationCap } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon } from './BrandIcons';
 import CopyEmail from './CopyEmail';
 import Accent from './Accent';
@@ -17,12 +18,15 @@ const Footer = () => (
         </div>
         <div className="lg:col-span-4 flex flex-col items-start lg:items-end gap-3">
           <CopyEmail email={profile.email} />
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <a href={profile.links.github} target="_blank" rel="noreferrer" className="btn btn-ghost">
               <GitHubIcon size={17} /> GitHub
             </a>
             <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="btn btn-ghost">
               <LinkedInIcon size={17} /> LinkedIn
+            </a>
+            <a href={profile.links.scholar} target="_blank" rel="noreferrer" className="btn btn-ghost">
+              <GraduationCap size={17} /> Scholar
             </a>
           </div>
         </div>

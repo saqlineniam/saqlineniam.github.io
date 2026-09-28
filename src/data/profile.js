@@ -11,13 +11,14 @@ export const profile = {
   // *Starred* words are shown in the serif-italic accent style.
   tagline: "Robotics, computer vision and machine learning for *agriculture* and *food systems*.",
   bio: [
-    "MS student in Horticulture at the University of Georgia and Graduate Research Assistant in the Precision Horticulture Lab. I build perception and decision-making systems for field robots and drones — from reinforcement learning that teaches a farm-ng Amiga where to measure in onion fields, to GPS-free plant re-identification from UAV imagery.",
+    "MS student in Horticulture at the University of Georgia and Graduate Research Assistant in the Precision Horticulture Lab. I build perception and decision-making systems for field robots and drones, from reinforcement learning that teaches a farm-ng Amiga where to measure in onion fields to GPS-free plant re-identification from UAV imagery.",
     "My background is in Food Engineering and Tea Technology (BSc, SUST), which means I work on both sides of the problem: the wet lab that produces the data, and the models that learn from it.",
   ],
-  email: "saklain35@student.sust.edu",
+  email: "saklain.niam@uga.edu",
   links: {
     github: "https://github.com/saqlineniam",
     linkedin: "https://linkedin.com/in/saklain-niam",
+    scholar: "https://scholar.google.com/citations?user=2zChObIAAAAJ&hl=en",
   },
   // Big call-to-action at the bottom of every page.
   contact: {
@@ -95,7 +96,7 @@ export const experience = [
   {
     title: "Research Assistant",
     org: "Dept. of Food Engineering and Tea Technology, SUST",
-    period: "May 2024 – 2026",
+    period: "May 2024 – Mar 2026",
     desc: "Research under Dr. Iftekhar Ahmad, integrating machine learning with non-thermal processing and post-harvest preservation to extend perishable food shelf life.",
   },
 ];

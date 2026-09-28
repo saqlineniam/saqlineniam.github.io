@@ -36,7 +36,7 @@ const Navigation = ({ onSearch }) => {
           scrolled || isOpen ? 'nav-glass' : 'border-transparent'
         }`}
       >
-        <Link to="/" className="flex items-center gap-2.5 rounded-full pr-3 shrink-0" aria-label={`${profile.name} — home`}>
+        <Link to="/" className="flex items-center gap-2.5 rounded-full pr-3 shrink-0" aria-label={`${profile.name}, home`}>
           <img src={profile.avatar} alt="" width="40" height="40" className="w-10 h-10 rounded-full object-cover ring-1 ring-zinc-900/10 dark:ring-white/15" />
           <span className="hidden sm:inline font-semibold tracking-tight text-zinc-900 dark:text-white">{profile.name}</span>
         </Link>

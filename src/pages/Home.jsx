@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, Bot, ScanEye, Cpu, FlaskConical } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Bot, ScanEye, Cpu, FlaskConical, GraduationCap } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon } from '../components/BrandIcons';
 import ProjectCard from '../components/ProjectCard';
 import PublicationItem from '../components/PublicationItem';
@@ -31,7 +31,7 @@ const Home = () => {
   useTitle();
   const featured = projects.filter((p) => p.featured);
   const published = publications.filter((p) => p.status === 'Published');
-  const selectedPubs = published.filter((p) => p.featured || p.projectSlug).slice(0, 3);
+  const recentPubs = [...published].sort((a, b) => b.year - a.year).slice(0, 4);
   const firstAuthor = published.filter((p) => p.authors.trim().startsWith('Niam')).length;
 
   const stats = [
@@ -70,6 +70,9 @@ const Home = () => {
             </a>
             <a href={profile.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="btn btn-ghost btn-icon">
               <LinkedInIcon size={18} />
+            </a>
+            <a href={profile.links.scholar} target="_blank" rel="noreferrer" aria-label="Google Scholar" className="btn btn-ghost btn-icon">
+              <GraduationCap size={18} />
             </a>
           </div>
         </motion.div>
@@ -169,16 +172,21 @@ const Home = () => {
       {/* ---------- Publications ---------- */}
       <section className="mt-28 grid md:grid-cols-12 gap-8">
         <div className="md:col-span-4">
-          <SectionHeading index="03" eyebrow="Research output" title="Selected *publications*" />
+          <SectionHeading index="03" eyebrow="Research output" title="Recent *publications*" />
           <p className="text-[15px] text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6 -mt-3">
             Peer-reviewed work in food science and agricultural machine learning, including {firstAuthor} first-author papers.
           </p>
-          <Link to="/publications" className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white">
-            All publications <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
-          </Link>
+          <div className="flex flex-col items-start gap-2">
+            <Link to="/publications" className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white">
+              All publications <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <a href={profile.links.scholar} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white">
+              Google Scholar <ArrowUpRight size={15} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </div>
         </div>
         <div className="reveal md:col-span-8 card p-6 md:p-8">
-          {selectedPubs.map((pub) => (
+          {recentPubs.map((pub) => (
             <PublicationItem key={pub.id} pub={pub} compact />
           ))}
         </div>

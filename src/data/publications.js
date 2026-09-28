@@ -1,10 +1,26 @@
 export const publications = [
   {
+    id: 6,
+    slug: "cold-plasma-applications",
+    title: "Cold plasma applications in agri-food processing and packaging.",
+    authors: "Patwary, M. A., Rahman, T., Das, E., Hossain, M. A., Hossain, M., Niam, S., Islam, A. A., & Yasin, M.",
+    journal: "Discover Food",
+    year: "2026",
+    type: "Journal Article",
+    status: "Published",
+    doi: "10.1007/s44187-026-01054-0",
+    link: "https://doi.org/10.1007/s44187-026-01054-0",
+    pdf: "",
+    featured: false,
+    background: "This review traces how cold plasma has moved from a nascent research stage to a technology of industrial-scale relevance for the agri-food sector, as a safer alternative to thermal and chemical preservation methods that degrade heat-sensitive nutrients and leave persistent chemical residues. It covers cold plasma applications across agri-food processing and sustainable packaging.",
+    images: []
+  },
+  {
     id: 2,
     slug: "tea-concentrates-sensory",
     projectSlug: "tea-concentrate-sensory-ml",
-    title: "Comprehensive Analysis of Tea Concentrates with Machine Learning–Assisted Sensory Characterization.",
-    authors: "Dina, P. R., Niam, S., Ahmad, I., Zzaman, W., Salim, M., Ahmed, Md. M., Rahman, T., & Shifat, A. S.",
+    title: "Comprehensive Analysis of Tea Concentrates with Machine Learning Assisted Sensory Characterization.",
+    authors: "Dina, P. R., Niam, S., Ahmad, I., Zzaman, W., Salim, M., Rayhan, M. A., Ahmed, M. M., Rahman, T., & Shifat, A. S.",
     journal: "Applied Food Research",
     year: "2026",
     type: "Journal Article",
@@ -13,7 +29,7 @@ export const publications = [
     link: "https://doi.org/10.1016/j.afres.2026.101896",
     pdf: "",
     featured: true,
-    background: "This research focused on analyzing the chemical profile and sensory attributes of concentrated tea extracts. We utilized machine learning models to map analytical data directly to sensory descriptors, reducing the reliance on subjective human panels.",
+    background: "We tracked physicochemical, biochemical, microbiological and sensory changes in seven tea concentrate types (FBOP, FP, BOP, GBOP, CD, RD and PF) over 30 days of frozen storage at −18 °C, and built machine learning models that predict sensory quality from chemical parameters. Total phenolic content declined 19–30% and theaflavins 70–80%, while highly polymerized substances increased 7–15%. The Broken Orange Pekoe concentrate scored highest on sensory evaluation (38.76 out of 45, rated Excellent).",
     images: [
       { id: 1, caption: "E-Nose Setup and Analytical Rig" },
       { id: 2, caption: "HPLC Analysis of Tea Concentrates" }
@@ -25,7 +41,7 @@ export const publications = [
     projectSlug: "ml-strawberry-edible-coatings",
     title: "Machine learning-based optimization of alginate, guar gum, and pectin-based edible coatings for extended strawberry shelf life.",
     authors: "Niam, S., Ahmad, I., Rayhan, M. A., Mahmood, S., Jon, P. H., & Ahmed, M. M.",
-    journal: "LWT - Food Science and Technology",
+    journal: "LWT",
     year: "2025",
     type: "Journal Article",
     status: "Published",
@@ -40,22 +56,6 @@ export const publications = [
       { id: 3, src: "/images/strawberries/lab3.webp", caption: "Sensory & Quality Evaluation" },
       { id: 4, src: "/images/strawberries/lab4.webp", caption: "Data Collection & Analysis" }
     ]
-  },
-  {
-    id: 6,
-    slug: "cold-plasma-applications",
-    title: "Cold plasma applications in agri-food processing and packaging.",
-    authors: "Patwary, M. A., Rahman, T., Das, E., Hossain, M. A., Hossain, M., Niam, S., Islam, A. A., & Yasin, M.",
-    journal: "Discover Food",
-    year: "2026",
-    type: "Journal Article",
-    status: "Published",
-    doi: "",
-    link: "#",
-    pdf: "",
-    featured: false,
-    background: "This comprehensive review explores the emerging field of cold plasma technology in the agri-food sector, focusing on its applications in processing and sustainable packaging solutions.",
-    images: []
   },
   {
     id: 3,
