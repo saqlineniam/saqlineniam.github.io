@@ -383,12 +383,6 @@ const ProjectDetail = () => {
                 </div>
               </Section>
             )}
-
-            {!project.implementationDetails && !project.youtubeId && (
-              <div className="card p-8 text-center text-zinc-500 dark:text-zinc-400 mb-16">
-                A detailed write-up for this project is coming soon.
-              </div>
-            )}
           </div>
         </div>
 
