@@ -362,5 +362,9 @@ html.dark * {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .marquee-track { animation: none !important; }
+  /* Keep the toolbox ticker moving, just slower and gentler. */
+  .marquee-track {
+    animation-duration: 90s !important;
+    animation-iteration-count: infinite !important;
+  }
 }
