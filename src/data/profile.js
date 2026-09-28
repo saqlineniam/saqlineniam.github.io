@@ -102,6 +102,8 @@ export const experience = [
 ];
 
 export const trainings = [
+  { title: "AI Literacy for All", org: "Digital Education Council and University of Georgia", period: "Sep 2026", desc: "Certificate of Completion (ID e0ct1mc4t3)." },
+  { title: "Learning & Development Catalog", org: "UGA Learning & Development", period: "Sep 2026", desc: "Online course on UGA's professional development offerings: workshops, certificate programs and cohort experiences." },
   { title: "Quality Control and Unit Operation", org: "TICI, Bangladesh", period: "Jan – Feb 2023", desc: "Industrial food processing and quality assurance protocols." },
   { title: "Agro-Processing & Preservation", org: "BRRI, Bangladesh", period: "Nov 2022", desc: "Sustainable post-harvest technologies and value addition." },
   { title: "International Tea Trade (Online)", org: "Zhangzhou College, China", period: "Nov 2022", desc: "Global tea economics, processing technology, and trade certification." },
