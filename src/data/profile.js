@@ -11,7 +11,7 @@ export const profile = {
   // *Starred* words are shown in the serif-italic accent style.
   tagline: "Robotics, computer vision and machine learning for *agriculture* and *food systems*.",
   bio: [
-    "MS student in Horticulture at the University of Georgia and Graduate Research Assistant in the Precision Horticulture Lab. I build perception and decision-making systems for field robots and drones, from reinforcement learning that teaches a farm-ng Amiga where to measure in onion fields to GPS-free plant re-identification from UAV imagery.",
+    "MS student in Horticulture at the University of Georgia and Graduate Research Assistant in the Precision Horticulture Lab. I build perception and decision-making systems for field robots and drones.",
     "My background is in Food Engineering and Tea Technology (BSc, SUST), which means I work on both sides of the problem: the wet lab that produces the data, and the models that learn from it.",
   ],
   email: "saklain.niam@uga.edu",
