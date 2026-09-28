@@ -63,6 +63,10 @@ npm run preview   # serve the production build
 
 `npm run build` also runs `scripts/postbuild.mjs`, which writes a page shell per route (correct titles in link previews), `404.html`, `sitemap.xml` and `robots.txt`.
 
+## TaalMantra web app
+
+The deploy also builds [TaalMantra](https://github.com/saqlineniam/TaalMantra) from its latest `main` and serves it at https://saqlineniam.github.io/taalmantra/. `npm run build:taalmantra` (after `npm run build`) does the same locally. It adds the app's dark theme class, a favicon, home-screen icons and a web manifest from `scripts/taalmantra-web/`. Nothing in the TaalMantra repo needs to change.
+
 ## Deploying
 
 Push to `main`. `.github/workflows/deploy.yml` builds the site and publishes `dist/` to GitHub Pages. Don't commit `dist/` or `node_modules/`; both are git-ignored.

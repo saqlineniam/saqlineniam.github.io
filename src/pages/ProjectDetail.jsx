@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Lightbulb, ZoomIn, Globe, Box, FileText, Workflow, BarChart3, History, Gauge, PlayCircle, BookOpen,
+  AppWindow, ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Lightbulb, ZoomIn, Globe, Box, FileText, Workflow, BarChart3, History, Gauge, PlayCircle, BookOpen,
 } from 'lucide-react';
 import { GitHubIcon } from '../components/BrandIcons';
 import Lightbox from '../components/Lightbox';
@@ -210,6 +210,11 @@ const ProjectDetail = () => {
             <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed mb-8">{project.story}</p>
 
             <div className="flex flex-wrap gap-3 mb-8">
+              {project.webApp && (
+                <a href={project.webApp} target="_blank" rel="noreferrer" className="btn btn-accent">
+                  <AppWindow size={16} /> Open the web app
+                </a>
+              )}
               {repo && (
                 <a href={repo} target="_blank" rel="noreferrer" className="btn btn-primary">
                   <GitHubIcon size={16} /> Source code

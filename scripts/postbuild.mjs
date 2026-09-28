@@ -41,7 +41,7 @@ for (const route of routes) {
 
 writeFileSync(join(dist, '404.html'), shell);
 
-const urls = ['/', ...routes.map((r) => `${r.path}/`)];
+const urls = ['/', ...routes.map((r) => `${r.path}/`), '/taalmantra/'];
 writeFileSync(
   join(dist, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls

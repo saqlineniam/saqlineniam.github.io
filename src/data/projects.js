@@ -380,12 +380,14 @@ export const projects = [
   {
     id: 18,
     slug: "taalmantra",
-    summary: "Android app for Indian classical music practice: tabla rhythm cycles, a tanpura drone and raag guides, built on React and the Web Audio API.",
+    summary: "Web and Android app for Indian classical music practice: tabla rhythm cycles, a tanpura drone and raag guides, built on React and the Web Audio API.",
     title: "TaalMantra: Indian Classical Metronome & Tanpura Drone",
     category: "Side Projects",
-    story: "A standalone mobile metronome and drone accompaniment app for Indian classical music practice (riyaz). It plays recorded tabla cycles for popular taals (Tintal, Dadra, Ektaal, Jhaptal, Rupak, Kaherwa) synced to any tempo, or schedules individual tabla bols stroke by stroke with lookahead timing. The tanpura drone is either pitch-shifted from a recording or synthesized from additive sawtooth oscillators with slow detune LFOs and waveshaping to mimic the bridge buzz. It also has raag melody guides and a custom taal creator, and ships as an Android app via Capacitor.",
+    story: "A standalone mobile metronome and drone accompaniment app for Indian classical music practice (riyaz). It plays recorded tabla cycles for popular taals (Tintal, Dadra, Ektaal, Jhaptal, Rupak, Kaherwa) synced to any tempo, or schedules individual tabla bols stroke by stroke with lookahead timing. The tanpura drone is either pitch-shifted from a recording or synthesized from additive sawtooth oscillators with slow detune LFOs and waveshaping to mimic the bridge buzz. It also has raag melody guides and a custom taal creator, ships as an Android app via Capacitor, and runs in the browser right here on this site.",
     tags: ["React", "Web Audio API", "Capacitor", "Android", "Audio DSP", "JavaScript"],
     imageLabel: "Tabla, tanpura and raag practice app",
+    webApp: "/taalmantra/",
+    thumbnail: "/images/taalmantra.webp",
     github: "https://github.com/saqlineniam/TaalMantra",
     featured: false
   }

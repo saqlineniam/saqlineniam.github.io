@@ -31,6 +31,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Build TaalMantra web app
+        run: npm run build:taalmantra
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

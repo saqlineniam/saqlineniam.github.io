@@ -6,8 +6,7 @@
     <title>Saklain Niam | Agricultural Robotics, Computer Vision &amp; ML</title>
     <meta name="description" content="Saklain Niam is an MS student and Graduate Research Assistant in the Precision Horticulture Lab at the University of Georgia, working on agricultural robotics, reinforcement learning, computer vision and machine learning for food systems." />
     <meta name="author" content="Saklain Niam" />
-    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#09090b" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://saqlineniam.github.io/" />
@@ -22,14 +21,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
     <script>
-      // Apply the saved/system theme before first paint to avoid a light-mode flash.
+      // Dark mode is the default; a saved "light" choice from the toggle overrides it.
+      // Runs before first paint so the page never flashes.
       (function () {
-        try {
-          var t = localStorage.getItem('theme');
-          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-          }
-        } catch (e) {}
+        var light = false;
+        try { light = localStorage.getItem('theme') === 'light'; } catch (e) {}
+        if (light) document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fafafa');
+        else document.documentElement.classList.add('dark');
       })();
     </script>
   </head>

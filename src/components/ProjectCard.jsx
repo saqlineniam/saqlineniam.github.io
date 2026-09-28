@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, PlayCircle, Globe, FileText, BookOpen } from 'lucide-react';
+import { ArrowUpRight, PlayCircle, Globe, FileText, BookOpen, AppWindow } from 'lucide-react';
 import Thumb from './Thumb';
 
 // Small badges that tell a visitor what's behind the card before they click.
 const Badges = ({ project }) => {
   const items = [
+    project.webApp && ['Web app', AppWindow],
     project.implementationDetails && ['Case study', BookOpen],
     project.youtubeId && ['Video', PlayCircle],
     project.streamlitUrl && ['Live demo', Globe],
