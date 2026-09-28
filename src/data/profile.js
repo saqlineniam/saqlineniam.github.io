@@ -131,6 +131,7 @@ export const testScores = [
 ];
 
 export const references = [
+  { name: "Dr. Luan Oliveira", title: "Assistant Professor and Precision Ag Extension Specialist, Dept. of Horticulture, University of Georgia (Tifton)", email: "luan@uga.edu" },
   { name: "Dr. Iftekhar Ahmad", title: "Professor, SUST", email: "iftekhar-ttc@sust.edu" },
   { name: "Dr. G M Rabiul Islam", title: "Professor, SUST", email: "rabi-ttc@sust.edu" },
 ];
