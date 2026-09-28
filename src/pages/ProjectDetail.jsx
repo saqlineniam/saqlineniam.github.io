@@ -211,8 +211,8 @@ const ProjectDetail = () => {
 
             <div className="flex flex-wrap gap-3 mb-8">
               {project.webApp && (
-                <a href={project.webApp} target="_blank" rel="noreferrer" className="btn btn-accent">
-                  <AppWindow size={16} /> Open the web app
+                <a href="#app" className="btn btn-accent">
+                  <AppWindow size={16} /> Try it below
                 </a>
               )}
               {repo && (
@@ -391,6 +391,28 @@ const ProjectDetail = () => {
             )}
           </div>
         </div>
+
+        {/* Live app embedded at the bottom of the page */}
+        {project.webApp && (
+          <section id="app" className="mb-16 scroll-mt-24">
+            <h2 className="flex items-center gap-3 text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white mb-2">
+              <span className="w-9 h-9 shrink-0 rounded-xl grid place-items-center bg-emerald-500/10 ring-1 ring-emerald-500/20">
+                <AppWindow size={17} className="text-emerald-700 dark:text-emerald-400" />
+              </span>
+              Try it
+            </h2>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-5">The full app, running right here. Press play to start the tabla.</p>
+            <div className="card overflow-hidden p-0">
+              <iframe
+                src={project.webApp}
+                title={`${project.title} web app`}
+                loading="lazy"
+                allow="autoplay"
+                className="block w-full h-[85vh] min-h-[640px] bg-[#020617]"
+              />
+            </div>
+          </section>
+        )}
 
         {/* Prev / next */}
         <nav className="grid sm:grid-cols-2 gap-4 pt-10 border-t border-zinc-200 dark:border-zinc-800" aria-label="More projects">
